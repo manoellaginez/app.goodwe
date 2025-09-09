@@ -1,0 +1,249 @@
+.cadastro {
+  align-items: start;
+  background-color: #ffffff;
+  display: grid;
+  justify-items: center;
+  width: 100vw;
+}
+
+.cadastro .div {
+  background-color: #ffffff;
+  height: 812px;
+  position: relative;
+  width: 375px;
+}
+
+.cadastro .home-indicator {
+  height: 34px;
+  left: 0;
+  position: absolute;
+  top: 778px;
+  width: 375px;
+}
+
+.cadastro .home-indicator-2 {
+  background-color: #000000;
+  border-radius: 100px;
+  height: 5px;
+  left: 121px;
+  position: relative;
+  top: 21px;
+  width: 134px;
+}
+
+.cadastro .overlap-group {
+  height: 74px;
+  left: 84px;
+  position: absolute;
+  top: 390px;
+  width: 207px;
+}
+
+.cadastro .text-wrapper {
+  color: #929292;
+  font-family: "Inter", Helvetica;
+  font-size: 16px;
+  font-weight: 600;
+  left: 37px;
+  letter-spacing: 0;
+  line-height: 24px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  white-space: nowrap;
+}
+
+.cadastro .image {
+  aspect-ratio: 3.98;
+  height: 52px;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 22px;
+  width: 207px;
+}
+
+.cadastro .status-bar {
+  height: 44px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 375px;
+}
+
+.cadastro .input-button {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  left: 24px;
+  position: absolute;
+  top: 479px;
+  width: 327px;
+}
+
+.cadastro .button {
+  /* all: unset;  <-- REMOVE ISSO */
+  align-items: center;
+  align-self: stretch;
+  background-color: #e60012;
+  border-radius: 8px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 8px;
+  height: 40px;
+  justify-content: center;
+  padding: 0px 16px;
+  position: relative;
+  width: 100%;
+  cursor: pointer; /* deixa clicável */
+  color: white; /* texto visível */
+  border: none; /* remove borda feia */
+}
+
+
+.cadastro .text-wrapper-2 {
+  color: #ffffff;
+  font-family: "Inter", Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 19.6px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.cadastro .button-wrapper {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  left: 24px;
+  position: absolute;
+  top: 526px;
+  width: 327px;
+}
+
+.cadastro .divider {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  left: 25px;
+  position: absolute;
+  top: 581px;
+  width: 327px;
+}
+
+.cadastro .divider-2 {
+  background-color: #e6e6e6;
+  flex: 1;
+  flex-grow: 1;
+  height: 1px;
+  position: relative;
+}
+
+.cadastro .text-wrapper-3 {
+  color: #828282;
+  font-family: "Inter", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 19.6px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.cadastro .label-wrapper {
+  all: unset;
+  background-color: #eeeeee;
+  border-radius: 8px;
+  box-sizing: border-box;
+  height: 40px;
+  left: 25px;
+  position: absolute;
+  top: 616px;
+  width: 327px;
+}
+
+.cadastro .label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 100%;
+  width: 100%;
+  position: relative; /* mantém para caso queira */
+  top: 0;   /* remove o deslocamento */
+  left: 0;  /* remove o deslocamento */
+}
+
+
+.cadastro .logo {
+  height: 20px;
+  position: relative;
+  width: 20px;
+}
+
+.cadastro .text-wrapper-4 {
+  color: #000000;
+  font-family: "Inter", Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 19.6px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.cadastro .ao-clicar-em {
+  color: transparent;
+  font-family: "Inter", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  left: 16px;
+  letter-spacing: 0;
+  line-height: 18px;
+  position: absolute;
+  text-align: center;
+  top: 723px;
+  width: 344px;
+}
+
+.cadastro .span {
+  color: #828282;
+}
+
+.cadastro .text-wrapper-5 {
+  color: #000000;
+}
+
+.cadastro .text-wrapper-4 {
+  margin-left: -20px; /* <<< ajuste fino */
+}
+
+.cadastro .button-link {
+  text-decoration: none; /* tira o sublinhado do link */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cadastro .button-wrapper.entre {
+  top: 479px;
+}
+
+.cadastro .button-wrapper.cadastro {
+  top: 526px;
+}
+
+
+
+
+
