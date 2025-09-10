@@ -409,7 +409,7 @@
   font-family: "Inter-SemiBold", Helvetica;
   font-size: 9px;
   font-weight: 600;
-  left: 271px;
+  left: 269px;
   letter-spacing: 0;
   line-height: 13.5px;
   position: absolute;
@@ -538,3 +538,12 @@
   top: 9px;
   width: 40px;
 }
+
+.text-wrapper-3.active,
+.text-wrapper-4.active {
+  background: white;
+  border-radius: 8px;
+  padding: 5px 10px;
+}
+
+

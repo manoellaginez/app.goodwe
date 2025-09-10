@@ -304,7 +304,7 @@
 .incio-dispositivos .text-wrapper-8 {
   color: #000000;
   font-family: "Inter-SemiBold", Helvetica;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 600;
   left: 336px;
   letter-spacing: 0;
@@ -320,13 +320,13 @@
   font-family: "Inter-SemiBold", Helvetica;
   font-size: 9px;
   font-weight: 600;
-  left: 271px;
+  left: 269px;
   letter-spacing: 0;
   line-height: 13.5px;
   position: absolute;
   text-align: center;
   top: 72px;
-  width: 38px;
+  width: 9px;
 }
 
 .incio-dispositivos .text-wrapper-10 {
@@ -594,4 +594,14 @@
   position: absolute;
   top: 0;
   width: 110px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.text-wrapper-3,
+.text-wrapper-4 {
+  text-decoration: none;
+  color: black; /* ou a cor que você quiser */
 }

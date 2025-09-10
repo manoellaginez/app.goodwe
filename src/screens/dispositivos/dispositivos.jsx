@@ -1,7 +1,8 @@
 import React from "react";
 import "./style.css";
+import { Link } from "react-router-dom";
 
-export const IncioDispositivos = () => {
+const Dispositivos = () => {
   return (
     <div className="incio-dispositivos">
       <div className="div">
@@ -31,13 +32,15 @@ export const IncioDispositivos = () => {
           <img className="mulher" alt="Mulher" src="/img/pessoa3.png"/> 
         </div>
 
-        <div className="frame">
-          <div className="overlap-group">
-            <div className="text-wrapper-3">Dispositivos</div>
-          </div>
+<div className="frame">
+  <div className="overlap-group">
+    <div className="text-wrapper-3">Dispositivos</div>
+  </div>
 
-          <div className="text-wrapper-4">Espaços</div>
-        </div>
+  <Link to="/entrar" className="text-wrapper-4" style={{ textDecoration: "none" }}>
+    Espaços
+  </Link>
+</div>
 
         <div className="overlap-2">
           <div className="frame-2">
@@ -66,7 +69,7 @@ export const IncioDispositivos = () => {
 
           <div className="text-wrapper-8">Mais</div>
 
-          <div className="text-wrapper-9">Perfil</div>
+          <div className="text-wrapper-9">Automação</div>
 
           <div className="text-wrapper-10">Gastos</div>
 
@@ -75,7 +78,7 @@ export const IncioDispositivos = () => {
           <div className="home-indicator-3">
             <div className="home-indicator-4" />
 
-            <img className="element" alt="Element" src="/img/logoperfil.png"/> 
+            <img className="element" alt="Element" src="/img/logoautomacao.png"/> 
 
             <img className="element-2" alt="Element" src="/img/logogastos.png"/> 
 
@@ -139,3 +142,5 @@ export const IncioDispositivos = () => {
     </div>
   );
 };
+
+export default Dispositivos;

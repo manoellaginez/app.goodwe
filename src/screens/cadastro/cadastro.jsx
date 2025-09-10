@@ -27,7 +27,7 @@ const Cadastro = () => {
         />
 
 <div className="button-wrapper entre">
-  <button className="button entre">ENTRE</button>
+  <Link to="/entre" className="button entre">ENTRE</Link>
 </div>
 
 <div className="button-wrapper cadastro">

@@ -1,8 +1,12 @@
 import React from "react";
 /* import statusBar from "./status-bar.svg"; */
 import "./style.css";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Entrar = () => {
+const location = useLocation();
+const navigate = useNavigate();
+
   return (
     <div className="incio-espaos">
       <div className="div">
@@ -11,13 +15,16 @@ const Entrar = () => {
 
         <div className="text-wrapper-2">Início</div>
 
-        <div className="frame">
-          <div className="overlap-group">
-            <div className="text-wrapper-3">Espaços</div>
-          </div>
+<div className="frame">
+  {/* indicador branco que se move */}
+  <div className={`indicator ${location.pathname === "/entrar" ? "left" : "right"}`} />
 
-          <div className="text-wrapper-4">Dispositivos</div>
-        </div>
+  <div className="overlap-group">
+    <Link to="/entrar" className="text-wrapper-3">Espaços</Link>
+  </div>
+
+  <Link to="/dispositivos" className="text-wrapper-4">Dispositivos</Link>
+</div>
 
         <div className="overlap">
           <div className="frame-2">
@@ -55,7 +62,10 @@ const Entrar = () => {
           <img className="img" alt="cozinha" src="/img/cozinha.png"/>
         </div>
 
-        <div className="ADICIONAR-NOVO-ESPA-wrapper">
+        <div className="ADICIONAR-NOVO-ESPA-wrapper"
+        onClick={() => navigate("/addnovoespaco")}
+  style={{ cursor: "pointer" }} // deixa parecer clicável
+>     
           <div className="ADICIONAR-NOVO-ESPA">
             ADICIONAR
             <br />
@@ -113,7 +123,7 @@ const Entrar = () => {
 
           <div className="text-wrapper-8">Mais</div>
 
-          <div className="text-wrapper-9">Perfil</div>
+          <div className="text-wrapper-9">Automação</div>
 
           <div className="text-wrapper-10">Gastos</div>
 
@@ -122,7 +132,7 @@ const Entrar = () => {
           <div className="home-indicator-3">
             <div className="home-indicator-4" />
 
-            <img className="element" alt="Element" src="/img/logoperfil.png"/> 
+            <img className="element" alt="Element" src="/img/logoautomacao.png"/> 
 
             <img className="element-2" alt="Element" src="/img/logogastos.png"/> 
 
