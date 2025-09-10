@@ -1,8 +1,10 @@
 import React from "react";
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 
 const Dispositivos = () => {
+const navigate = useNavigate();
+
   return (
     <div className="incio-dispositivos">
       <div className="div">
@@ -111,6 +113,7 @@ const Dispositivos = () => {
         </div>
 
         <div className="ADICIONAR-NOVO-wrapper">
+         <Link to="/addnovodispositivo" style={{ textDecoration: "none" }}>
           <div className="ADICIONAR-NOVO">
             ADICIONAR
             <br />
@@ -118,6 +121,7 @@ const Dispositivos = () => {
             <br />
             DISPOSITIVO
           </div>
+          </Link>
         </div>
 
         <div className="overlap-6">

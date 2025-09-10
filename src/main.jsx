@@ -9,6 +9,7 @@ import Entrar from "./screens/entrar/entrar.jsx";
 import Dispositivos from "./screens/dispositivos/dispositivos.jsx"; 
 import Entre from "./screens/entre/entre.jsx";
 import AddNovoEspaco from "./screens/addnovoespaco/addnovoespaco.jsx"
+import Addnovodispositivo from "./screens/addnovodispositivo/addnovodispositivo.jsx";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/dispositivos" element={<Dispositivos />} /> 
         <Route path="/entre" element={<Entre />} />
         <Route path="/addnovoespaco" element={<AddNovoEspaco />} /> 
+        <Route path="/addnovodispositivo" element={<Addnovodispositivo />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
