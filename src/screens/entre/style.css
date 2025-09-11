@@ -1,144 +1,133 @@
+/* Container principal da página */
 .entre {
-align-items: start;
-background-color: #ffffff;
-display: grid; 
-justify-items: center;
-width: 100vw;
+  align-items: start;
+  background-color: #ffffff;
+  display: grid; 
+  justify-items: center;
+  width: 100vw;
 }
 
+/* Div principal da tela, com dimensões fixas */
 .entre .div {
-background-color: #ffffff; 
-height: 812px;
-overflow: hidden;
-position: relative;
-width: 375px;
+  background-color: #ffffff; 
+  height: 812px;
+  width: 375px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
 }
 
+/* Título "Entre" */
 .entre .text-wrapper {
-color: #e60012;
-font-family: "Inter-SemiBold", Helvetica;
-font-size: 25px;
-font-weight: 600;
-left: 159px;
-letter-spacing: 0;
-line-height: 37.5px;
-position: absolute;
-top: 294px;
-white-space: nowrap;
-width: 67px;
+  color: #e60012;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 37.5px;
+  white-space: nowrap;
+  margin-top: 220px;
+  margin-bottom: 30px;
 }
 
+/* Link "Esqueci minha senha" */
 .entre .text-wrapper-2 {
-color: #e60012;
-font-family: "Inter-SemiBold", Helvetica;
-font-size: 10px;
-font-weight: 600;
-left: 30px;
-letter-spacing: 0;
-line-height: 15px;
-position: absolute;
-top: 437px;
-white-space: nowrap;
-width: 106px;
+  color: #e60012;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 15px;
+  white-space: nowrap;
+  margin-top: 20px;
+  align-self: flex-start; /* Alinha o link à esquerda */
 }
 
-.entre .frame {
-background-color: #f6f6f6;
-border-radius: 10px;
-box-shadow: 0px 4px 4px #00000040;
-height: 32px;
-left: 27px;
-overflow: hidden;
-position: absolute;
-top: 344px;
-width: 322px;
-}
-
-.entre .text-wrapper-3 {
-color: #a5a5a5;
-font-family: "Inter-SemiBold", Helvetica;
-font-size: 13px;
-font-weight: 600;
-left: 10px;
-letter-spacing: 0;
-line-height: 19.5px;
-position: absolute;
-text-align: center;
-top: 5px;
-white-space: nowrap;
-}
-
+/* Estilo do contêiner do input (a caixa com sombra) */
+.entre .frame,
 .entre .div-wrapper {
-    background-color: #f6f6f6;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px #00000040;
-    height: 32px;
-    left: 27px;
-    overflow: hidden;
-    position: absolute;
-    top: 397px;
-    width: 322px;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px #00000040;
+  height: 32px;
+  width: 322px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 20px;
 }
 
-.entre .text-wrapper-4 {
-color: #a5a5a5;
-font-family: "Inter-SemiBold", Helvetica;
-font-size: 13px;
-font-weight: 600;
-left: 10px;
-letter-spacing: 0;
-line-height: 19.5px;
-position: absolute;
-text-align: center;
-top: 5px;
-white-space: nowrap;
+/* Garante que o input preencha o contêiner e estiliza o placeholder */
+.entre input {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  padding-left: 10px;
+  box-sizing: border-box;
+  color: #a5a5a5;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 19.5px;
 }
 
+.entre input::placeholder {
+  color: #a5a5a5;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 19.5px;
+}
+
+/* Botão "ENTRAR" */
 .entre .input-button {
-align-items: flex-start;
-display: flex;
-flex-direction: column;
-gap: 16px;
-left: 27px;
-position: absolute;
-top: 468px;
-width: 327px;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 327px;
+  margin-top: 20px;
 }
 
 .entre .button {
-    all: unset;
-    align-items: center;
-    align-self: stretch;
-    background-color: #e60012;
-    border-radius: 8px;
-    box-sizing: border-box;
-    display: flex;
-    gap: 8px;
-    height: 40px;
-    justify-content: center;
-    padding: 0px 16px;
-    position: relative
-    width: 100%;
+  all: unset;
+  align-items: center;
+  align-self: stretch;
+  background-color: #e60012;
+  border-radius: 8px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 8px;
+  height: 40px;
+  justify-content: center;
+  padding: 0px 16px;
+  position: relative;
+  width: 100%;
+  cursor: pointer;
 }
 
 .entre .text-wrapper-5 {
-color: #ffffff;
-font-family: "Inter-Medium", Helvetica;
-font-size: 14px;
-font-weight: 500;
-letter-spacing: 0;
-line-height: 19.6px;
-position: relative;
-white-space: nowrap;
-width: fit-content;
+  color: #ffffff;
+  font-family: "Inter-Medium", Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 19.6px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
 }
 
 .entre .home-indicator {
-    background-color: #000000;
-    border-radius: 100px;
-    height: 5px;
-    left: 121px;
-    position: absolute;
-    top: 798px;
-    width: 134px;
+  background-color: #000000;
+  border-radius: 100px;
+  height: 5px;
+  width: 134px;
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
 }

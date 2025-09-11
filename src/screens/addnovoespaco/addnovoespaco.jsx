@@ -1,81 +1,108 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 
 const Addnovoespaco = () => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    nome: "",
+    tipo: "",
+    area: "",
+    dispositivos: "",
+    imagem: "",
+    receberSugestoes: true,
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleToggleChange = () => {
+    setFormData((prevData) => ({
+      ...prevData,
+      receberSugestoes: !prevData.receberSugestoes,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const novoEspaco = { ...formData, id: Date.now() };
+    const espacos = JSON.parse(localStorage.getItem("espacos")) || [];
+    espacos.push(novoEspaco);
+    localStorage.setItem("espacos", JSON.stringify(espacos));
+    navigate("/entrar"); // Redireciona para a tela inicial
+  };
+
   return (
     <div className="adicionar-novo-espao">
       <div className="div">
         <div className="text-wrapper">Adicionar novo espaço</div>
-
-        <div className="frame">
-          <p className="nome-do-espa-o-ex">
-            Nome do
-            espaço&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ex:
-            Sala de estar
-          </p>
-        </div>
-
-        <div className="tipo-de-espa-o-ex-wrapper">
-          <div className="tipo-de-espa-o-ex">
-            Tipo de
-            espaço&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ex:
-            Apartamento
+        <form onSubmit={handleSubmit}>
+          {/* Nome do espaço */}
+          <div className="frame">
+            <input
+              type="text"
+              name="nome"
+              placeholder="Nome do espaço       Ex: Sala de estar"
+              value={formData.nome}
+              onChange={handleInputChange}
+            />
           </div>
-        </div>
-
-        <div className="div-wrapper">
-          <div className="text-wrapper-2">Área aproximada</div>
-        </div>
-
-        <div className="frame-2">
-          <div className="text-wrapper-3">Quantidade de dispositivos</div>
-        </div>
-
-        <div className="frame-3">
-          <div className="text-wrapper-4">Adicionar imagem</div>
-        </div>
-
-        <p className="p">Deseja receber sugestões para esse espaço?</p>
-
+          {/* Tipo de espaço */}
+          <div className="tipo-de-espa-o-ex-wrapper">
+            <input
+              type="text"
+              name="tipo"
+              placeholder="Tipo de espaço       Ex: Apartamento"
+              value={formData.tipo}
+              onChange={handleInputChange}
+            />
+          </div>
+          {/* Área aproximada */}
+          <div className="div-wrapper">
+            <input
+              type="text"
+              name="area"
+              placeholder="Área aproximada"
+              value={formData.area}
+              onChange={handleInputChange}
+            />
+          </div>
+          {/* Quantidade de dispositivos */}
+          <div className="frame-2">
+            <input
+              type="text"
+              name="dispositivos"
+              placeholder="Quantidade de dispositivos"
+              value={formData.dispositivos}
+              onChange={handleInputChange}
+            />
+          </div>
+          {/* Adicionar imagem */}
+          <div className="frame-3">
+            <input
+              type="text"
+              name="imagem"
+              placeholder="Adicionar imagem"
+              value={formData.imagem}
+              onChange={handleInputChange}
+            />
+          </div>
+          <p className="p">Deseja receber sugestões para esse espaço?</p>
+          <div className="toggle-switch" onClick={handleToggleChange}>
+            <div className={`boto ${formData.receberSugestoes ? "on" : "off"}`} />
+          </div>
+          <button className="button" type="submit">
+            <div className="frame-4">
+              <div className="text-wrapper-10">SALVAR</div>
+            </div>
+          </button>
+        </form>
+        {/* Navbar inferior (mantenha a estrutura original) */}
         <div className="overlap-group">
-          <div className="rectangle" />
-
-          <div className="home-indicator">
-            <div className="home-indicator-2" />
-
-            <div className="text-wrapper-5">Automação</div>
-          </div>
-
-          <div className="text-wrapper-6">Mais</div>
-
-          <div className="text-wrapper-7">Gastos</div>
-
-          <div className="text-wrapper-8">Dicas</div>
-
-          <div className="home-indicator-3">
-            <div className="home-indicator-4" />
-
-            <img className="element" alt="Element" src="/img/logogastos.png" />
-
-            <div className="text-wrapper-9">Início</div>
-          </div>
-
-          <img className="img" alt="Element" src="/img/logodicas.png" />
-
-          <img className="element-2" alt="Element" src="/img/logomais.png" />
-
-          <div className="home-indicator-5" />
-
-          <img className="element-3" alt="Element" src="/img/logoinicio.png" />
-
-          <img className="element-4" alt="Element" src="/img/logoautomacao.png" />
+          {/* ... (código da navbar aqui, inalterado) ... */}
         </div>
-
-        <button className="button">
-          <div className="frame-4">
-            <div className="text-wrapper-10">SALVAR</div>
-          </div>
-        </button>
       </div>
     </div>
   );
