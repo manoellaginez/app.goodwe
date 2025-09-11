@@ -36,14 +36,12 @@
 .entre .text-wrapper-2 {
   color: #e60012;
   font-family: "Inter-SemiBold", Helvetica;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0;
-  line-height: 15px;
-  white-space: nowrap;
-  margin-top: 20px;
-  align-self: flex-start; /* Alinha o link à esquerda */
+  margin-top: 6px;
+  margin-left: -190px;  /* vá mudando esse valor até alinhar certinho */
 }
+
 
 /* Estilo do contêiner do input (a caixa com sombra) */
 .entre .frame,

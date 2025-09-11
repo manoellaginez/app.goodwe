@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import { Link , useNavigate } from "react-router-dom";
+import { Link , NavLink , useNavigate } from "react-router-dom";
 
 const Dispositivos = () => {
 const navigate = useNavigate();
@@ -35,14 +35,27 @@ const navigate = useNavigate();
         </div>
 
 <div className="frame">
-  <div className="overlap-group">
-    <div className="text-wrapper-3">Dispositivos</div>
-  </div>
-
-  <Link to="/entrar" className="text-wrapper-4" style={{ textDecoration: "none" }}>
+  <NavLink 
+    to="/entrar"
+    className={({ isActive }) => 
+      `text-wrapper-4 ${isActive ? "active" : ""}`
+    }
+    style={{ textDecoration: "none" }}
+  >
     Espaços
-  </Link>
+  </NavLink>
+
+  <NavLink 
+    to="/dispositivos"
+    className={({ isActive }) => 
+      `text-wrapper-3 ${isActive ? "active" : ""}`
+    }
+    style={{ textDecoration: "none" }}
+  >
+    Dispositivos
+  </NavLink>
 </div>
+
 
         <div className="overlap-2">
           <div className="frame-2">
