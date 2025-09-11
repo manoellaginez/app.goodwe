@@ -1,45 +1,130 @@
-import "./style.css";
+import React, { useState } from "react";
+import "./style.css"; 
+import { useNavigate } from "react-router-dom";
 
 const Addnovodispositivo = () => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    nome: "",
+    potencia: "",
+    uso: "",
+    espaco: "",
+    imagem: "",
+    receberSugestoes: true,
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleToggleChange = () => {
+    setFormData((prev) => ({
+      ...prev,
+      receberSugestoes: !prev.receberSugestoes,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const dispositivosSalvos =
+      JSON.parse(localStorage.getItem("dispositivos")) || [];
+
+    const novoDispositivo = { ...formData, id: Date.now() };
+
+    localStorage.setItem(
+      "dispositivos",
+      JSON.stringify([...dispositivosSalvos, novoDispositivo])
+    );
+
+    navigate("/dispositivos");
+  };
+
   return (
-    <div className="adicionar-novo">
+    <div className="adicionar-novo-espao">
       <div className="div">
-
-        <div className="text-wrapper-6">Adicionar novo dispositivo</div>
-
-        <div className="frame">
-          <div className="nome-do-dispositivo">
-            Nome do
-            dispositivo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ex:
-            Chuveiro
+        <div className="text-wrapper">Adicionar novo dispositivo</div>
+        <form onSubmit={handleSubmit}>
+          {/* Nome */}
+          <div className="input-wrapper">
+            <input
+              type="text"
+              name="nome"
+              value={formData.nome}
+              onChange={handleInputChange}
+              placeholder=" "
+            />
+            <span className="label">Nome do dispositivo</span>
+            <span className="example">Ex: Chuveiro</span>
           </div>
-        </div>
 
-        <div className="div-wrapper">
-          <div className="text-wrapper-7">Potência (W ou kW) e Voltagem</div>
-        </div>
+          {/* Potência */}
+          <div className="input-wrapper">
+            <input
+              type="text"
+              name="potencia"
+              value={formData.potencia}
+              onChange={handleInputChange}
+              placeholder=" "
+            />
+            <span className="label">Potência (W ou kW) e Voltagem</span>
+            <span className="example">Ex: 4500W - 220V</span>
+          </div>
 
-        <div className="frame-2">
-          <div className="text-wrapper-8">Uso médio por dia</div>
-        </div>
+          {/* Uso médio */}
+          <div className="input-wrapper">
+            <input
+              type="text"
+              name="uso"
+              value={formData.uso}
+              onChange={handleInputChange}
+              placeholder=" "
+            />
+            <span className="label">Uso médio por dia (horas)</span>
+            <span className="example">Ex: 2h</span>
+          </div>
 
-        <div className="frame-3">
-          <div className="text-wrapper-8">Selecione o espaço</div>
-        </div>
+          {/* Espaço */}
+          <div className="input-wrapper">
+            <input
+              type="text"
+              name="espaco"
+              value={formData.espaco}
+              onChange={handleInputChange}
+              placeholder=" "
+            />
+            <span className="label">Selecione o espaço</span>
+            <span className="example">Ex: Banheiro</span>
+          </div>
 
-        <p className="p">Deseja receber sugestões para esse dispostivo?</p>
+          {/* Imagem */}
+          <div className="input-wrapper">
+            <input
+              type="text"
+              name="imagem"
+              value={formData.imagem}
+              onChange={handleInputChange}
+              placeholder=" "
+            />
+            <span className="label">URL da imagem (opcional)</span>
+            <span className="example">Ex: https://...</span>
+          </div>
 
-        <div className="frame-4">
-          <div className="text-wrapper-9">Adicionar imagem</div>
-        </div>
+          {/* Sugestões */}
+          <p className="p">Deseja receber sugestões para esse dispositivo?</p>
+          <div className="toggle-switch" onClick={handleToggleChange}>
+            <div
+              className={`boto ${formData.receberSugestoes ? "on" : "off"}`}
+            />
+          </div>
 
-        <div className="input-button">
-          <button className="button">
-            <div className="frame-5">
+          <button className="button" type="submit">
+            <div className="frame-4">
               <div className="text-wrapper-10">SALVAR</div>
             </div>
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );

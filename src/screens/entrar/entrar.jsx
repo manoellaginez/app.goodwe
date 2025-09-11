@@ -1,143 +1,110 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
-import { useNavigate, NavLink } from "react-router-dom";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, query, where, onSnapshot } from "firebase/firestore";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Entrar = () => {
+  const location = useLocation();
   const navigate = useNavigate();
-  const [spaces, setSpaces] = useState([]);
-  const [userId, setUserId] = useState(null);
+  const [espacos, setEspacos] = useState([]);
+  const [switchState, setSwitchState] = useState({});
 
   useEffect(() => {
-    const firebaseConfig = JSON.parse(
-      typeof __firebase_config !== "undefined"
-        ? __firebase_config
-        : "{}"
-    );
+    const espacosSalvos = JSON.parse(localStorage.getItem("espacos")) || [];
+    setEspacos(espacosSalvos);
 
-    if (Object.keys(firebaseConfig).length > 0) {
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-      const db = getFirestore(app);
+    const initialSwitchState = espacosSalvos.reduce((acc, espaco) => {
+      acc[espaco.id] = true;
+      return acc;
+    }, {});
+    setSwitchState(initialSwitchState);
+  }, []);
 
-      const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
-        if (user) {
-          setUserId(user.uid);
-        } else {
-          setUserId(null);
-        }
-      });
-
-      // Fetch data for spaces
-      if (userId) {
-        const q = query(
-          collection(db, "artifacts", "123456789", "public", "data", "spaces"),
-          where("userId", "==", userId)
-        );
-
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
-          const spacesArray = [];
-          querySnapshot.forEach((doc) => {
-            spacesArray.push({ id: doc.id, ...doc.data() });
-          });
-          setSpaces(spacesArray);
-        });
-
-        return () => {
-          unsubscribeAuth();
-          unsubscribe();
-        };
-      } else {
-        return () => unsubscribeAuth();
-      }
-    }
-  }, [userId]);
-
-  const handleAddSpace = () => {
-    navigate("/addnovoespaco");
-  };
-
-  const toggleStatus = (spaceId, currentStatus) => {
-    // Lógica para alternar o status
-    // Você pode usar uma função de atualização do Firestore aqui
+  const handleToggle = (espacoId) => {
+    setSwitchState((prevState) => ({
+      ...prevState,
+      [espacoId]: !prevState[espacoId],
+    }));
   };
 
   return (
     <div className="incio-espaos">
       <div className="div">
+        {/* Seção do topo: título e perfis */}
         <div className="top-section">
           <div className="text-wrapper-2">Início</div>
+          <div className="text-wrapper">Membros da família</div>
+          <div className="overlap-7">
+            <img className="profile-image-2" alt="Profile" src="/img/pessoa1.png" />
+            <img className="profile-image" alt="Profile" src="/img/pessoa1.png" />
+            <img className="profile-image-3" alt="Profile" src="/img/pessoa1.png" />
+            <img className="element-gente-texto" alt="Profile" src="/img/pessoa2.png" />
+            <img className="mulher" alt="Profile" src="/img/pessoa3.png" />
+          </div>
         </div>
 
-<div className="frame">
-  <NavLink 
-    to="/entrar"
-    className={({ isActive }) => 
-      `button-link ${isActive ? "active" : ""}`
-    }
-    style={{ textDecoration: "none" }}
-  >
-    Espaços
-  </NavLink>
+        {/* Botões de navegação */}
+        <div className="frame">
+          <div className={`indicator ${location.pathname === "/entrar" ? "left" : "right"}`} />
+          <div className="overlap-group">
+            <Link to="/entrar" className="text-wrapper-3">Espaços</Link>
+          </div>
+          <Link to="/dispositivos" className="text-wrapper-4">Dispositivos</Link>
+        </div>
 
-  <NavLink 
-    to="/dispositivos"
-    className={({ isActive }) => 
-      `button-link ${isActive ? "active" : ""}`
-    }
-    style={{ textDecoration: "none" }}
-  >
-    Dispositivos
-  </NavLink>
-</div>
-
+        {/* Container para os cartões de espaço */}
         <div className="spaces-container">
-          {spaces.map((space) => (
-            <div className="card-container" key={space.id}>
+          {espacos.map((espaco) => (
+            <div className="card-container" key={espaco.id}>
               <div className="frame-2">
-                <img className="card-image" alt="Imagem do espaço" src={space.imagem} />
+                <img className="card-image" src={espaco.imagem || "https://via.placeholder.com/132x83"} alt={espaco.nome} />
                 <div className="card-info-container">
-                  <div className="text-wrapper-5">{space.nome}</div>
-                  <div className="text-wrapper-6">{space.dispositivos} dispositivos</div>
+                  <div className="text-wrapper-5">{espaco.nome}</div>
+                  <div className="text-wrapper-6">{espaco.dispositivos} dispositivos</div>
                 </div>
-                <div className="rectangle-wrapper" onClick={() => toggleStatus(space.id, space.status)}>
-                  <div className={`rectangle ${space.status ? "on" : "off"}`} />
+                <div className="rectangle-wrapper" onClick={() => handleToggle(espaco.id)}>
+                  <div className={`rectangle ${switchState[espaco.id] ? 'on' : 'off'}`} />
                 </div>
+                <div className="text-wrapper-7">{switchState[espaco.id] ? 'ON' : 'OFF'}</div>
               </div>
             </div>
           ))}
 
-          <div className="ADICIONAR-NOVO-ESPA-wrapper" onClick={handleAddSpace}>
+          {/* Cartão "Adicionar novo espaço" estático */}
+          <div className="ADICIONAR-NOVO-ESPA-wrapper" onClick={() => navigate("/addnovoespaco")}>
             <div className="ADICIONAR-NOVO-ESPA">
-              ADICIONAR NOVO ESPAÇO
+              ADICIONAR
+              <br />
+              NOVO
+              <br />
+              ESPAÇO
             </div>
           </div>
         </div>
 
+        {/* Navbar inferior */}
         <div className="overlap-8">
           <div className="rectangle-3" />
+          <div className="home-indicator" />
           <div className="navbar-links">
             <div className="navbar-item">
-              <img className="lightbulb" alt="Dicas" src="/img/logodicas.png" />
-              <div className="text-wrapper-8">Dicas</div>
+              <img className="element-5" alt="Element" src="/img/logoinicio.png" />
+              <div className="text-wrapper-12">Início</div>
             </div>
             <div className="navbar-item">
-              <img className="money" alt="Gastos" src="/img/logogastos.png" />
-              <div className="text-wrapper-9">Gastos</div>
+              <img className="element-2" alt="Element" src="/img/logogastos.png" />
+              <div className="text-wrapper-10">Gastos</div>
             </div>
             <div className="navbar-item">
-              <img className="house" alt="Início" src="/img/logoinicio.png" />
-              <div className="text-wrapper-10">Início</div>
+              <img className="element" alt="Element" src="/img/logoautomacao.png" />
+              <div className="text-wrapper-9">Automação</div>
             </div>
             <div className="navbar-item">
-              <img className="settings" alt="Automação" src="/img/logoautomacao.png" />
-              <div className="text-wrapper-11">Automação</div>
+              <img className="element-3" alt="Element" src="/img/logodicas.png" />
+              <div className="text-wrapper-11">Dicas</div>
             </div>
             <div className="navbar-item">
-              <img className="menu" alt="Mais" src="/img/logomais.png" />
-              <div className="text-wrapper-12">Mais</div>
+              <img className="element-4" alt="Element" src="/img/logomais.png" />
+              <div className="text-wrapper-8">Mais</div>
             </div>
           </div>
         </div>
