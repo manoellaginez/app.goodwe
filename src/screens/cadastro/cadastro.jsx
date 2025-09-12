@@ -11,20 +11,10 @@ const Cadastro = () => {
         </div>
 
         <div className="overlap-group">
-          <div className="text-wrapper">uma parceria com</div>
+          <div className="text-wrapper">designed for you</div>
 
-          <img
-            className="image"
-            alt="Image"
-            src="https://c.animaapp.com/hcMliXJ6/img/image-1@2x.png"
-          />
+          <img className="image" alt="Image" src="/voltrix.png" />
         </div>
-
-        <img
-          className="status-bar"
-          alt="Status bar"
-          src="https://c.animaapp.com/hcMliXJ6/img/status-bar.svg"
-        />
 
 <div className="button-wrapper entre">
   <Link to="/entre" className="button entre">ENTRE</Link>

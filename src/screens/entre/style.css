@@ -118,14 +118,3 @@
   white-space: nowrap;
   width: fit-content;
 }
-
-.entre .home-indicator {
-  background-color: #000000;
-  border-radius: 100px;
-  height: 5px;
-  width: 134px;
-  position: absolute;
-  bottom: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-}

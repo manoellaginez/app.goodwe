@@ -64,7 +64,6 @@ function Entre() {
             </button>
           </div>
         </form>
-        <div className="home-indicator"></div>
       </div>
     </div>
   );

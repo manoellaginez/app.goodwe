@@ -118,7 +118,12 @@ const Dispositivos = () => {
               <div className="text-wrapper-10">Gastos</div>
             </div>
             <div className="navbar-item">
-              <img className="element" alt="Element" src="/img/logoinicio.png" />
+              <img
+  className="element"
+  alt="Início"
+  src="/img/logoinicio.png"
+  style={{ width: "32px", height: "32px", zIndex: 10, position: "relative" }}
+/>
               <div className="text-wrapper-9">Início</div>
             </div>
             <div className="navbar-item">

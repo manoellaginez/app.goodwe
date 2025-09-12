@@ -45,12 +45,12 @@
 
 .cadastro .image {
   aspect-ratio: 3.98;
-  height: 52px;
-  left: 0;
-  object-fit: cover;
+  height: 70%;
+  left: -100px;
+  object-fit: none;
   position: absolute;
   top: 22px;
-  width: 207px;
+  width: 400px;
 }
 
 .cadastro .status-bar {
@@ -177,6 +177,7 @@
   height: 20px;
   position: relative;
   width: 20px;
+  left: -20px;
 }
 
 .cadastro .text-wrapper-4 {
