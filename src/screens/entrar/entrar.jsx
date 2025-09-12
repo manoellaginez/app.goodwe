@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, NavLink } from "react-router-dom";
 
 const Entrar = () => {
   const location = useLocation();
@@ -31,18 +31,20 @@ const Entrar = () => {
       <div className="div">
         {/* Seção do topo: título e perfis */}
         <div className="top-section">
-          <div className="text-wrapper-2">Dispositivos</div>
+          <div className="text-wrapper-2">Início</div>
         </div>
 
 
-        {/* Botões de navegação */}
-        <div className="frame">
-          <div className={`indicator ${location.pathname === "/entrar" ? "left" : "right"}`} />
-          <div className="overlap-group">
-            <Link to="/entrar" className="text-wrapper-3">Espaços</Link>
-          </div>
-          <Link to="/dispositivos" className="text-wrapper-4">Dispositivos</Link>
-        </div>
+<div className="tabs-frame">
+  <NavLink to="/entrar" className="button-link">
+    Espaços
+  </NavLink>
+
+  <NavLink to="/dispositivos" className="button-link">
+    Dispositivos
+  </NavLink>
+</div>
+
 
         {/* Container para os cartões de espaço */}
         <div className="spaces-container">
@@ -80,8 +82,8 @@ const Entrar = () => {
           <div className="home-indicator" />
           <div className="navbar-links">
             <div className="navbar-item">
-              <img className="element-5" alt="Element" src="/img/logoinicio.png" />
-              <div className="text-wrapper-12">Início</div>
+              <img className="element-5" alt="Element" src="/img/logodicas.png" />
+              <div className="text-wrapper-12">Dicas</div>
             </div>
           <div className="navbar-item">
            <Link to="/gastos" className="navbar-link">
@@ -90,12 +92,12 @@ const Entrar = () => {
            </Link>
           </div>
             <div className="navbar-item">
-              <img className="element" alt="Element" src="/img/logoautomacao.png" />
-              <div className="text-wrapper-9">Automação</div>
+              <img className="element" alt="Element" src="/img/logoinicio.png" />
+              <div className="text-wrapper-9">Início</div>
             </div>
             <div className="navbar-item">
-              <img className="element-3" alt="Element" src="/img/logodicas.png" />
-              <div className="text-wrapper-11">Dicas</div>
+              <img className="element-3" alt="Element" src="/img/logoautomacao.png" />
+              <div className="text-wrapper-11">Automação</div>
             </div>
             <div className="navbar-item">
               <img className="element-4" alt="Element" src="/img/logomais.png" />

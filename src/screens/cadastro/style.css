@@ -21,16 +21,6 @@
   width: 375px;
 }
 
-.cadastro .home-indicator-2 {
-  background-color: #000000;
-  border-radius: 100px;
-  height: 5px;
-  left: 121px;
-  position: relative;
-  top: 21px;
-  width: 134px;
-}
-
 .cadastro .overlap-group {
   height: 74px;
   left: 84px;
@@ -86,7 +76,7 @@
   /* all: unset;  <-- REMOVE ISSO */
   align-items: center;
   align-self: stretch;
-  background-color: #e60012;
+  background-color: #b42222;
   border-radius: 8px;
   box-sizing: border-box;
   display: flex;
@@ -246,7 +236,7 @@
 .cadastro .button.entre {
   align-items: center;
   align-self: stretch;
-  background-color: #e60012;
+  background-color: #b42222;
   border-radius: 8px;
   box-sizing: border-box;
   display: flex;

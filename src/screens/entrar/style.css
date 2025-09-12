@@ -298,22 +298,12 @@
   margin-top: 20px;
   position: relative;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
-.incio-espaos .overlap-group {
-  -webkit-backdrop-filter: blur(2px) brightness(100%);
-  backdrop-filter: blur(2px) brightness(100%);
-  background-color: #ffffff;
-  border-radius: 8px;
-  height: 26px;
-  width: 168px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
+
 
 .incio-espaos .text-wrapper-3,
 .incio-espaos .text-wrapper-4 {
@@ -595,7 +585,7 @@
 .incio-espaos .profile-image-3 { left: 45px; }
 
 
-/* Botões de navegação "Espaços" / "Dispositivos" */
+/* Container dos botões */
 .incio-espaos .frame {
   background-color: #d9d9d9;
   border-radius: 10px;
@@ -603,37 +593,34 @@
   height: 32px;
   width: 322px;
   margin-top: 20px;
-  display: flex; /* Garante que os links se comportem como flex items */
-  justify-content: space-around; /* Distribui o espaço entre os botões */
+  display: flex;
+  justify-content: center;  /* mantém centralizado */
   align-items: center;
-  position: relative; /* Para posicionar o indicador se for um pseudo-elemento */
+  gap: 10px; /* espaço entre "Espaços" e "Dispositivos" */
 }
 
-/* Links (botões) dentro do frame */
+/* Botões */
 .incio-espaos .button-link {
-  flex-grow: 1; /* Faz cada link ocupar o máximo de espaço possível */
-  text-decoration: none; /* Remove o sublinhado padrão do link */
-  height: 100%;
+  text-decoration: none;
+  padding: 0 20px;   /* espaço interno */
+  height: 26px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; /* Para o indicador de ativo */
-  color: #000000;
+  border-radius: 8px;
   font-family: "Inter-SemiBold", Helvetica;
   font-size: 13px;
   font-weight: 600;
+  color: #000000;
   white-space: nowrap;
 }
 
-/* Indicador de botão ativo (o sublinhado azul e fundo branco) */
+/* Botão ativo */
 .incio-espaos .button-link.active {
   background-color: #ffffff;
-  border-radius: 8px;
-  height: 26px; /* Ajuste para ter o mesmo tamanho do botão original */
-  width: 168px; /* Ajuste para ter o mesmo tamanho do botão original */
-  color: #000000; /* Cor do texto quando ativo */
-  box-shadow: 0px 4px 4px #00000040; /* Sombra se desejar */
+  box-shadow: 0px 4px 4px #00000040;
 }
+
 
 /* Remova .overlap-group e .text-wrapper-3/.text-wrapper-4 que estavam com position: absolute */
 /* O .text-wrapper-3 e .text-wrapper-4 são agora apenas o texto dentro do .button-link */
@@ -646,3 +633,140 @@
 /* Estilos para a barra de navegação inferior - MANTIDOS */
 .incio-espaos .overlap-8 { /* ... */ }
 /* ... (mantenha todos os estilos da navbar inferior aqui) ... */
+
+/* ===========================
+   Overrides para o frame de abas
+   =========================== */
+
+/* garante que as novas regras sobrescrevam as antigas */
+.incio-espaos .frame {
+  position: relative;          /* necessário para o indicador absoluto */
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  height: 32px;
+  width: 322px;
+  margin-top: 20px;
+  padding: 3px;                /* espaço ao redor do indicador */
+  display: flex;
+  gap: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+/* o "pílula" branca que se move para esquerda/direita */
+.incio-espaos .frame .indicator {
+  position: absolute;
+  top: 3px;
+  left: 3px;                   /* posição padrão: esquerda */
+  width: 168px;                /* largura visível na referência */
+  height: 26px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+  transition: left .18s ease, right .18s ease;
+  z-index: 0;                  /* abaixo dos textos */
+}
+
+/* classe para deslocar o indicador para a direita */
+.incio-espaos .frame .indicator.right {
+  left: auto;
+  right: 3px;
+}
+
+/* os botões (links) ficam sobre o indicador */
+.incio-espaos .button-link {
+  position: relative;
+  z-index: 1;                  /* acima do indicador */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;                     /* cada link ocupa espaço igual */
+  height: 26px;
+  padding: 0 8px;
+  margin: 0 3px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #000;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* se por algum motivo ainda existir uma classe .active, não precisa usar
+   fundo — o indicador já mostra o ativo. Mantemos só para segurança. */
+.incio-espaos .button-link.active {
+  color: #000;
+}
+
+/* anula regras antigas problemáticas (sempre depois das existentes) */
+.incio-espaos .overlap-group {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  left: auto !important;
+  top: auto !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.incio-espaos .text-wrapper-3,
+.incio-espaos .text-wrapper-4 {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  width: auto !important;
+  text-align: center !important;
+}
+
+/* Container das abas */
+.tabs-frame {
+  position: relative;
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+  height: 32px;
+  width: 322px;
+  margin-top: 20px;
+  padding: 3px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Mantém os botões lado a lado */
+}
+
+/* Aba ativa (o fundo branco) */
+.tabs-frame .indicator {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 168; !important /* metade do frame */
+  height: 28px; !important
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
+  transition: left 0.3s ease;
+  z-index: 0;
+}
+
+/* Quando a aba for a da direita */
+.tabs-frame .indicator.right {
+  left: calc(50% - 3px);
+}
+
+/* Botões de texto */
+.tabs-frame .button-link {
+  flex: 1;
+  text-align: center;
+  font-family: "Inter-SemiBold", Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
+  line-height: 26px;
+  position: relative;
+  z-index: 1; /* fica acima do indicator */
+  cursor: pointer;
+  text-decoration: none;
+}
+
+

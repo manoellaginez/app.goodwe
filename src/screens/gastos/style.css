@@ -124,7 +124,7 @@
 }
 
 .gastos .home-indicator-4 {
-  background-color: #e60012;
+  background-color: #b42222;
   border-radius: 100px;
   height: 2px;
   left: 62px;
@@ -305,11 +305,11 @@
 }
 
 .gastos .text-wrapper-8 {
-  color: #e60012;
+  color: #b42222;
   font-family: "Inter-SemiBold", Helvetica;
   font-size: 20px;
   font-weight: 600;
-  left: 23px;
+  left: 9px;
   letter-spacing: 0;
   line-height: 30px;
   position: absolute;
@@ -333,15 +333,15 @@
 }
 
 .gastos .p {
-  color: #e60012;
+  color: #b42222;
   font-family: "Inter-SemiBold", Helvetica;
   font-size: 22px;
   font-weight: 600;
-  left: 21px;
+  left: 76px;
   letter-spacing: 0;
   line-height: 33px;
   position: absolute;
-  top: 96px;
+  top: 80px;
   white-space: nowrap;
   width: 337px;
 }

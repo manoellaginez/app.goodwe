@@ -35,24 +35,26 @@ const Dispositivos = () => {
       <div className="div">
         {/* Seção do topo */}
         <div className="top-section">
-           <div className="text-wrapper-2">Dispositivos</div>
+           <div className="text-wrapper-2">Início</div>
         </div>
 
 
-        {/* Navegação Espaços x Dispositivos */}
-        <div className="frame">
-          <div
-            className={`indicator ${
-              location.pathname === "/entrar" ? "left" : "right"
-            }`}
-          />
-          <Link to="/entrar" className="text-wrapper-3">
-            Espaços
-          </Link>
-          <Link to="/dispositivos" className="text-wrapper-4">
-            Dispositivos
-          </Link>
-        </div>
+{/* Navegação Espaços x Dispositivos */}
+<div className="tabs-frame">
+  <Link
+    to="/entrar"
+    className={`button-link ${location.pathname === "/entrar" ? "active" : ""}`}
+  >
+    Espaços
+  </Link>
+  <Link
+    to="/dispositivos"
+    className={`button-link ${location.pathname === "/dispositivos" ? "active" : ""}`}
+  >
+    Dispositivos
+  </Link>
+</div>
+
 
         {/* Container dos cards */}
         <div className="spaces-container">
@@ -108,20 +110,20 @@ const Dispositivos = () => {
           <div className="home-indicator" />
           <div className="navbar-links">
             <div className="navbar-item">
-              <img className="element-5" alt="Element" src="/img/logoinicio.png" />
-              <div className="text-wrapper-12">Início</div>
+              <img className="element-5" alt="Element" src="/img/logodicas.png" />
+              <div className="text-wrapper-12">Dicas</div>
             </div>
             <div className="navbar-item">
               <img className="element-2" alt="Element" src="/img/logogastos.png" />
               <div className="text-wrapper-10">Gastos</div>
             </div>
             <div className="navbar-item">
-              <img className="element" alt="Element" src="/img/logoautomacao.png" />
-              <div className="text-wrapper-9">Automação</div>
+              <img className="element" alt="Element" src="/img/logoinicio.png" />
+              <div className="text-wrapper-9">Início</div>
             </div>
             <div className="navbar-item">
-              <img className="element-3" alt="Element" src="/img/logodicas.png" />
-              <div className="text-wrapper-11">Dicas</div>
+              <img className="element-3" alt="Element" src="/img/logoautomacao.png" />
+              <div className="text-wrapper-11">Automação</div>
             </div>
             <div className="navbar-item">
               <img className="element-4" alt="Element" src="/img/logomais.png" />
