@@ -45,7 +45,7 @@ const Cadastro1 = () => {
     localStorage.setItem("contas", JSON.stringify(contas));
 
     alert("Conta criada com sucesso! Por favor, faça o login.");
-    navigate("/entrar"); // Redireciona para a rota "/entrar"
+    navigate("/entre"); // Redireciona para a rota "/entrar"
   };
 
   return (

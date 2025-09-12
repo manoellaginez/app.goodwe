@@ -31,16 +31,9 @@ const Entrar = () => {
       <div className="div">
         {/* Seção do topo: título e perfis */}
         <div className="top-section">
-          <div className="text-wrapper-2">Início</div>
-          <div className="text-wrapper">Membros da família</div>
-          <div className="overlap-7">
-            <img className="profile-image-2" alt="Profile" src="/img/pessoa1.png" />
-            <img className="profile-image" alt="Profile" src="/img/pessoa1.png" />
-            <img className="profile-image-3" alt="Profile" src="/img/pessoa1.png" />
-            <img className="element-gente-texto" alt="Profile" src="/img/pessoa2.png" />
-            <img className="mulher" alt="Profile" src="/img/pessoa3.png" />
-          </div>
+          <div className="text-wrapper-2">Dispositivos</div>
         </div>
+
 
         {/* Botões de navegação */}
         <div className="frame">
@@ -90,10 +83,12 @@ const Entrar = () => {
               <img className="element-5" alt="Element" src="/img/logoinicio.png" />
               <div className="text-wrapper-12">Início</div>
             </div>
-            <div className="navbar-item">
-              <img className="element-2" alt="Element" src="/img/logogastos.png" />
-              <div className="text-wrapper-10">Gastos</div>
-            </div>
+          <div className="navbar-item">
+           <Link to="/gastos" className="navbar-link">
+           <img className="element-2" alt="Element" src="/img/logogastos.png" />
+           <div className="text-wrapper-10">Gastos</div>
+           </Link>
+          </div>
             <div className="navbar-item">
               <img className="element" alt="Element" src="/img/logoautomacao.png" />
               <div className="text-wrapper-9">Automação</div>

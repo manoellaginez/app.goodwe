@@ -35,16 +35,9 @@ const Dispositivos = () => {
       <div className="div">
         {/* Seção do topo */}
         <div className="top-section">
-          <div className="text-wrapper-2">Dispositivos</div>
-          <div className="text-wrapper">Meus dispositivos</div>
-          <div className="overlap-7">
-            <img className="profile-image-2" alt="Profile" src="/img/pessoa1.png" />
-            <img className="profile-image" alt="Profile" src="/img/pessoa1.png" />
-            <img className="profile-image-3" alt="Profile" src="/img/pessoa1.png" />
-            <img className="element-gente-texto" alt="Profile" src="/img/pessoa2.png" />
-            <img className="mulher" alt="Profile" src="/img/pessoa3.png" />
-          </div>
+           <div className="text-wrapper-2">Dispositivos</div>
         </div>
+
 
         {/* Navegação Espaços x Dispositivos */}
         <div className="frame">
