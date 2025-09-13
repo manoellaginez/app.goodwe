@@ -12,8 +12,7 @@ const Cadastro = () => {
 
         <div className="overlap-group">
           <div className="text-wrapper">designed for you</div>
-
-          <img className="image" alt="Image" src="/voltrix.png" />
+          <img className="image" alt="Image" src="/Voltrix.png" />
         </div>
 
 <div className="button-wrapper entre">
