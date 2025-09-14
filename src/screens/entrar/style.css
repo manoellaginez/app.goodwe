@@ -514,17 +514,6 @@
   position: relative;
 }
 
-/* Estilos para a tela de Login (Entre.jsx) - MANTIDOS */
-.entre .text-wrapper { /* ... */ }
-/* ... (mantenha todos os estilos da tela 'Entre' aqui) ... */
-
-/* Estilos para a tela Adicionar Novo Espaço (Addnovoespaco.jsx) - MANTIDOS */
-.adicionar-novo-espao .text-wrapper { /* ... */ }
-/* ... (mantenha todos os estilos da tela 'Addnovoespaco' aqui) ... */
-
-/* Estilos para a tela Início (Entrar.jsx) */
-
-/* Nova seção de cabeçalho para alinhar "Início" e "Membros da família" */
 .incio-espaos .header-section {
   width: 100%;
   padding: 0 28px;
@@ -740,8 +729,8 @@
   position: absolute;
   top: 3px;
   left: 3px;
-  width: 168; !important /* metade do frame */
-  height: 28px; !important
+  width: 168; 
+  height: 28px;
   background: white;
   border-radius: 8px;
   box-shadow: 0px 2px 4px rgba(0,0,0,0.25);

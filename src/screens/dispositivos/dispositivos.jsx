@@ -3,139 +3,82 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./style.css";
 
 const Dispositivos = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const [dispositivos, setDispositivos] = useState([]);
-  const [switchState, setSwitchState] = useState({});
-
-  useEffect(() => {
-    // Busca no localStorage
-    const dispositivosSalvos =
-      JSON.parse(localStorage.getItem("dispositivos")) || [];
-    setDispositivos(dispositivosSalvos);
-
-    // Inicializa os switches
-    const initialSwitchState = dispositivosSalvos.reduce((acc, disp) => {
-      acc[disp.id] = true;
-      return acc;
-    }, {});
-    setSwitchState(initialSwitchState);
-  }, []);
-
-  const handleToggle = (id) => {
-    setSwitchState((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
+  const navigate = useNavigate(); // Inicializa o hook de navegação
 
   return (
-    <div className="incio-espaos">
-      <div className="div">
-        {/* Seção do topo */}
-        <div className="top-section">
-           <div className="text-wrapper-2">Início</div>
+    <div className="container">
+      <div className="header">
+        <img 
+          src="/img/voltar.png" 
+          alt="Voltar" 
+          className="voltar-vector"
+          onClick={() => navigate(-1)} // Adiciona a função de navegação no clique
+          style={{ cursor: 'pointer' }} // Adiciona o estilo do ponteiro para indicar que é clicável
+        />
+        <h1>Tomada Inteligente 01</h1>
+      </div>
+
+      <div className="card power-card">
+        <span className="power-text">POWER</span>
+        <div className="power-status"></div>
+      </div>
+
+      <div className="card local-card">
+        <div className="local-icon">
+          <img src="/img/tomada.png" alt="Tomada Icone" />
         </div>
+        <div>
+          <div className="local-title">Local</div>
+          <div className="local-subtitle">Sala de Estar</div>
+          <div className="local-title">Definição</div>
+          <div className="local-subtitle">Carregador de Celular</div>
+        </div>
+      </div>
 
-
-{/* Navegação Espaços x Dispositivos */}
-<div className="tabs-frame">
-  <Link
-    to="/entrar"
-    className={`button-link ${location.pathname === "/entrar" ? "active" : ""}`}
-  >
-    Espaços
-  </Link>
-  <Link
-    to="/dispositivos"
-    className={`button-link ${location.pathname === "/dispositivos" ? "active" : ""}`}
-  >
-    Dispositivos
-  </Link>
-</div>
-
-
-        {/* Container dos cards */}
-        <div className="spaces-container">
-          {dispositivos.map((disp) => (
-            <div className="card-container" key={disp.id}>
-              <div className="frame-2">
-                <img
-                  className="card-image"
-                  src={disp.imagem || "https://via.placeholder.com/132x83"}
-                  alt={disp.nome}
-                />
-                <div className="card-info-container">
-                  <div className="text-wrapper-5">{disp.nome}</div>
-                  <div className="text-wrapper-6">
-                    {disp.potencia || "?"} - {disp.uso || "?"}h/dia
-                  </div>
-                </div>
-                <div
-                  className="rectangle-wrapper"
-                  onClick={() => handleToggle(disp.id)}
-                >
-                  <div
-                    className={`rectangle ${
-                      switchState[disp.id] ? "on" : "off"
-                    }`}
-                  />
-                </div>
-                <div className="text-wrapper-7">
-                  {switchState[disp.id] ? "ON" : "OFF"}
-                </div>
-              </div>
-            </div>
-          ))}
-
-          {/* Card de adicionar novo */}
-          <div
-            className="ADICIONAR-NOVO-ESPA-wrapper"
-            onClick={() => navigate("/addnovodispositivo")}
-          >
-            <div className="ADICIONAR-NOVO-ESPA">
-              ADICIONAR
-              <br />
-              NOVO
-              <br />
-              DISPOSITIVO
-            </div>
+      <div className="card energy-usage-card">
+        <div className="tabs">
+          <div className="tab-button active">Hoje</div>
+          <div className="tab-button">Este Mês</div>
+        </div>
+        <div className="title">Uso de Energia</div>
+        <div className="energy-metrics">
+          <div className="energy-metric">
+            <span className="label">Tempo de Execução</span>
+            <span className="value">13 h</span>
+          </div>
+          <div className="energy-metric">
+            <span className="label">Uso de Energia</span>
+            <span className="value">0,001 kWh</span>
+          </div>
+          <div className="energy-metric">
+            <span className="label">Potência Atual</span>
+            <span className="value">&lt; 1 w R$</span>
           </div>
         </div>
+        <button className="more-button">Mostrar mais</button>
+      </div>
 
-        {/* Navbar inferior */}
-        <div className="overlap-8">
-          <div className="rectangle-3" />
-          <div className="home-indicator" />
-          <div className="navbar-links">
-            <div className="navbar-item">
-              <img className="element-5" alt="Element" src="/img/logodicas.png" />
-              <div className="text-wrapper-12">Dicas</div>
-            </div>
-            <div className="navbar-item">
-              <img className="element-2" alt="Element" src="/img/logogastos.png" />
-              <div className="text-wrapper-10">Gastos</div>
-            </div>
-            <div className="navbar-item">
-              <img
-  className="element"
-  alt="Início"
-  src="/img/logoinicio.png"
-  style={{ width: "32px", height: "32px", zIndex: 10, position: "relative" }}
-/>
-              <div className="text-wrapper-9">Início</div>
-            </div>
-            <div className="navbar-item">
-              <img className="element-3" alt="Element" src="/img/logoautomacao.png" />
-              <div className="text-wrapper-11">Automação</div>
-            </div>
-            <div className="navbar-item">
-              <img className="element-4" alt="Element" src="/img/logomais.png" />
-              <div className="text-wrapper-8">Mais</div>
-            </div>
-          </div>
+      <div className="actions-grid">
+        <div className="action-item">
+          <span className="label">Cronograma</span>
+          <img src="/img/calendario.png" />
         </div>
+        <div className="action-item">
+          <span className="label">Cronômetro</span>
+          <img src="/img/cronometro.png" />
+        </div>
+        <div className="action-item">
+          <span className="label">Ausente</span>
+          <img src="/img/ausente.png" />
+        </div>
+      </div>
+
+      <div className="transfer-card">
+        <div className="info-container">
+          <span className="info-title">Transferência de Energia</span>
+          <span className="info-label">Ative o modo inteligente para dormir</span>
+        </div>
+        <img className="brand" src="/img/logo-goodwe.png" alt="GOODWE Logo" />
       </div>
     </div>
   );
