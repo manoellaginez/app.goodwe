@@ -1,308 +1,131 @@
-/* Container principal e div */
-.adicionar-novo-espao {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100vw;
-  background-color: #ffffff;
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body {
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background-color: #f0f0f0;
 }
 
-.adicionar-novo-espao .div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #ffffff;
-  height: 812px;
-  width: 375px;
-  overflow: auto;
-  position: relative;
+.container {
+    width: 100%;
+    max-width: 375px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Título */
-.adicionar-novo-espao .text-wrapper {
-  margin-top: 72px;
-  margin-bottom: 35px;
-  color: #e60012;
-  font-family: "Inter-SemiBold", Helvetica;
-  font-size: 25px;
-  font-weight: 600;
-  align-self: flex-start;
-  margin-left: 27px;
-  width: auto;
-  padding-left: 27px;
-  align-self: flex-start;
+header {
+    padding: 20px;
+    background-color: #fff;
+    text-align: left;
 }
 
-.adicionar-novo-espao input {
-  all: unset;            /* reseta tudo */
-  width: 100%;
-  font-family: "Inter-SemiBold", Helvetica;
-  font-size: 13px;
-  font-weight: 600;
-  color: #6b6b6b;        /* texto digitado */
-  box-sizing: border-box;
+header h1 {
+    color: #e60023;
+    margin: 0;
+    font-size: 2em;
 }
 
-/* O input ocupa todo o espaço interno da caixa — sem criar "outra caixa" */
-.adicionar-novo-espao .input-wrapper input,
-.adicionar-novo-espao .div-wrapper input,
-.adicionar-novo-espao .frame-2 input,
-.adicionar-novo-espao .frame-3 input {
-  width: 100%;
-  height: 100%;
-  line-height: 32px; /* centraliza verticalmente o texto */
-  border: none;
-  background: transparent;
-  outline: none;
-  font-size: 13px;
-  font-family: "Inter-SemiBold", Helvetica;
-  font-weight: 600;
-  color: #6b6b6b; /* cor do texto digitado */
-  box-sizing: border-box;
+.filter-bar {
+    position: relative; /* Necessário para posicionar o indicator */
+    display: flex;
+    padding: 3px; 
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin: 0 20px;
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.1);
+    overflow: hidden; /* Garante que o indicador não saia */
 }
 
-/* placeholder mais claro */
-.adicionar-novo-espao input::placeholder {
-  color: #a5a5a5;
+.filter-bar .indicator {
+    position: absolute;
+    top: 3px;
+    left: 3px; /* Posição inicial para o primeiro botão */
+    width: calc(50% - 3px); /* Metade da largura do filter-bar, descontando o padding */
+    height: calc(100% - 6px); /* Altura total do filter-bar, descontando o padding */
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.15); 
+    transition: left 0.3s ease; /* Transição para o movimento horizontal */
+    z-index: 0; 
 }
 
-/* garante que o primeiro campo não tenha top-margin extra */
-.adicionar-novo-espao .input-wrapper:first-of-type,
-.adicionar-novo-espao .div-wrapper:first-of-type {
-  margin-top: 0;
-}
-
-/* (opcional) evita que o autofil do Chrome pinte o fundo branco */
-.adicionar-novo-espao input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #f6f6f6 inset !important;
-  box-shadow: 0 0 0px 1000px #f6f6f6 inset !important;
-  background: transparent !important;
+.filter-bar .indicator.right {
+    left: calc(50% + 1.5px); /* Move para a direita */
 }
 
 
-.adicionar-novo-espao input::placeholder {
-  color: #a5a5a5;
-  font-family: "Inter-SemiBold", Helvetica;
-  font-size: 13px;
-  font-weight: 600;
+.filter-bar button {
+    flex: 1; /* Divide o espaço igualmente entre os botões */
+    padding: 6px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #555;
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease; /* Tempo de transição de cor */
 }
 
-/* P parágrafo e toggle */
-.adicionar-novo-espao .p {
-  color: #a5a5a5;
-  font-family: "Inter-SemiBold", Helvetica;
-  font-size: 13px;
-  font-weight: 600;
-  margin-top: 20px;
-  align-self: flex-start;
-  margin-left: 27px;
+.filter-bar button.active {
+    color: #333;
 }
 
-.adicionar-novo-espao .toggle-switch {
-  width: 45px;
-  height: 23px;
-  background-color: #d9d9d9;
-  border-radius: 20px;
-  box-shadow: 0px 4px 4px #00000040;
-  cursor: pointer;
-  position: relative;
-  margin-top: 10px;
-  align-self: center; /* Centraliza o botão */
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
 }
 
-.adicionar-novo-espao .toggle-switch .boto {
-  width: 19px;
-  height: 19px;
-  border-radius: 50%;
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+.add-items {
+    max-width: 80%;
 }
 
-.adicionar-novo-espao .toggle-switch .boto.on {
-  background-color: #ff0202;
-  transform: translateX(22px);
+.add-items h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: #333;
 }
 
-.adicionar-novo-espao .toggle-switch .boto.off {
-  background-color: #c4c4c4;
-  transform: translateX(0);
+.add-items p {
+    color: #777;
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin-bottom: 30px;
 }
 
-/* Botão SALVAR */
-.adicionar-novo-espao .button {
-  all: unset;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #e60012;
-  border-radius: 8px;
-  box-sizing: border-box;
-  height: 40px;
-  width: 327px;
-  margin-top: 20px;
-  cursor: pointer;
+.add-button {
+    background-color: transparent;
+    border: 2px solid #3b3939;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 2em;
+    color: #3b3939;
+    transition: all 0.2s ease-in-out;
+    margin: 0 auto;
 }
 
-.adicionar-novo-espao .text-wrapper-10 {
-  color: #ffffff;
-  font-family: "Inter-Medium", Helvetica;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-/* Navbar inferior */
-.adicionar-novo-espao .overlap-group {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
-.adicionar-novo-espao form {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* centraliza tudo dentro do form */
-  width: 100%;
-}
-
-.adicionar-novo-espao .input-wrapper:focus-within,
-.adicionar-novo-espao .div-wrapper:focus-within,
-.adicionar-novo-espao .frame-2:focus-within,
-.adicionar-novo-espao .frame-3:focus-within {
-  box-shadow: 0px 4px 6px #00000040; /* destaque quando focado */
-}
-
-.adicionar-novo-espao .input-wrapper {
-  background-color: #f6f6f6;
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px #00000040;
-  height: 32px;
-  width: 322px;
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  box-sizing: border-box;
-}
-
-.adicionar-novo-espao .input-wrapper input {
-  border: none;
-  background: transparent;
-  outline: none;
-  width: 100%;
-  text-align: left;
-  font-size: 13px;
-  font-family: "Inter-SemiBold", Helvetica;
-  font-weight: 600;
-  color: #6b6b6b
-}
-
-.adicionar-novo-espao .input-wrapper input::placeholder {
-  color: #a5a5a5;
-}
-
-.adicionar-novo-espao .input-wrapper .label,
-.adicionar-novo-espao .input-wrapper .example {
-  color: #a5a5a5;
-  font-size: 13px;
-  font-family: "Inter-SemiBold", Helvetica;
-  font-weight: 600;
-  white-space: nowrap; /* impede quebrar a linha */
-}
-
-
-.adicionar-novo-espao .text-wrapper {
-  margin-top: 72px;
-  margin-bottom: 20px; /* controla o espaço para o form */
-}
-
-.adicionar-novo-espao form {
-  margin-top: 0; /* impede que o form adicione espaçamento extra */
-}
-
-.adicionar-novo-espao .input-wrapper:first-of-type {
-  margin-top: 0; /* zera o espaçamento do primeiro campo */
-}
-
-/* Garante que os 3 últimos inputs fiquem alinhados à esquerda */
-.adicionar-novo-espao .div-wrapper input,
-.adicionar-novo-espao .frame-2 input,
-.adicionar-novo-espao .frame-3 input {
-  text-align: left; /* alinha texto e placeholder à esquerda */
-  padding-left: 10px; /* dá um respiro igual aos dois primeiros */
-}
-
-/* wrapper (caixa com fundo e sombra) */
-.adicionar-novo-espao .input-wrapper {
-  position: relative;
-  background-color: #f6f6f6;
-  border-radius: 10px;
-  box-shadow: 0 4px 4px rgba(0,0,0,0.25);
-  height: 32px;
-  width: 322px;
-  margin-top: 20px;
-  padding: 0 12px;
-  box-sizing: border-box;
-  display: block; /* keep simple — input full width */
-}
-
-/* input ocupa a caixa inteira (transparente) */
-.adicionar-novo-espao .input-wrapper input {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  border: none;
-  background: transparent;
-  outline: none;
-  padding: 0;
-  font-family: "Inter-SemiBold", Helvetica;
-  font-size: 13px;
-  font-weight: 600;
-  color: #6b6b6b;   /* texto digitado em cinza escuro */
-  text-align: left; /* garante alinhamento à esquerda */
-  box-sizing: border-box;
-}
-
-/* spans (label à esquerda, example à direita) */
-.adicionar-novo-espao .input-wrapper .label,
-.adicionar-novo-espao .input-wrapper .example {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #a5a5a5;
-  font-size: 13px;
-  font-family: "Inter-SemiBold", Helvetica;
-  font-weight: 600;
-  z-index: 1;
-  pointer-events: none;
-  transition: opacity .12s ease, transform .12s ease;
-}
-
-.adicionar-novo-espao .input-wrapper .label { left: 12px; }
-.adicionar-novo-espao .input-wrapper .example { right: 12px; }
-
-/* quando o input tem foco ou já tem valor, esconde os spans */
-.adicionar-novo-espao .input-wrapper input:focus ~ .label,
-.adicionar-novo-espao .input-wrapper input:focus ~ .example,
-.adicionar-novo-espao .input-wrapper input:not(:placeholder-shown) ~ .label,
-.adicionar-novo-espao .input-wrapper input:not(:placeholder-shown) ~ .example {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-60%);
-}
-
-/* placeholder (não aparece porque é apenas " " — mas deixo a cor caso precise) */
-.adicionar-novo-espao .input-wrapper input::placeholder {
-  color: transparent;
-}
-
-/* focus visual na caixa (ao focar o input) */
-.adicionar-novo-espao .input-wrapper:focus-within {
-  box-shadow: 0 6px 8px rgba(0,0,0,0.22);
+.add-button:hover {
+    border-color: #aaa;
+    color: #aaa;
 }
 

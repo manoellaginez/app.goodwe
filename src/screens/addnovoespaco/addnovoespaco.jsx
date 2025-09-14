@@ -1,146 +1,63 @@
-import React, { useState } from "react";
-import "./style.css";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import './style.css'; 
 
-const Addnovoespaco = () => {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    nome: "",
-    tipo: "",
-    area: "",
-    dispositivos: "",
-    imagem: "",
-    receberSugestoes: true,
-  });
+//addnovoespaco agora equivale a página "Minha casa"
+function HomePage() {
+    const [activeTab, setActiveTab] = useState('todos'); 
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
+    // useEffect para simular o comportamento do script no DOM
+    useEffect(() => {
+        const indicator = document.querySelector('.filter-bar .indicator');
+        if (indicator) {
+            if (activeTab === 'filtrar') {
+                indicator.classList.add('right');
+            } else {
+                indicator.classList.remove('right');
+            }
+        }
+    }, [activeTab]); // Roda sempre que activeTab mudar
 
-  const handleToggleChange = () => {
-    setFormData((prevData) => ({
-      ...prevData,
-      receberSugestoes: !prevData.receberSugestoes,
-    }));
-  };
+    const handleFilterClick = (tabName) => {
+        setActiveTab(tabName);
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    try {
-      // Recupera os espaços já salvos no localStorage
-      const espacosSalvos = JSON.parse(localStorage.getItem("espacos")) || [];
-
-      // Cria o novo espaço com um id único
-      const newSpace = { ...formData, id: Date.now() };
-
-      // Adiciona o novo espaço na lista
-      espacosSalvos.push(newSpace);
-
-      // Salva a lista atualizada no localStorage
-      localStorage.setItem("espacos", JSON.stringify(espacosSalvos));
-
-      // Redireciona para a tela Entrar
-      navigate("/entrar");
-    } catch (error) {
-      console.error("Erro ao salvar espaço: ", error);
-    }
-  };
-
-  return (
-    <div className="adicionar-novo-espao">
-      <div className="div">
-        <div className="text-wrapper">Adicionar novo espaço</div>
-        <form onSubmit={handleSubmit}>
-          {/* Nome do espaço */}
-          <div className="input-wrapper">
-            <input
-              type="text"
-              name="nome"
-              value={formData.nome}
-              onChange={handleInputChange}
-              placeholder=" "
-              aria-label="Nome do espaço"
-              spellCheck={false}
-            />
-            <span className="label">Nome do espaço</span>
-            <span className="example">Ex: Sala de estar</span>
-          </div>
-
-          {/* Tipo de espaço */}
-          <div className="input-wrapper">
-            <input
-              type="text"
-              name="tipo"
-              value={formData.tipo}
-              onChange={handleInputChange}
-              placeholder=" "
-              aria-label="Tipo de espaço"
-              spellCheck={false}
-            />
-            <span className="label">Tipo de espaço</span>
-            <span className="example">Ex: Apartamento</span>
-          </div>
-
-          {/* Área aproximada */}
-          <div className="input-wrapper">
-            <input
-              type="text"
-              name="area"
-              value={formData.area}
-              onChange={handleInputChange}
-              placeholder=" "
-              aria-label="Área aproximada"
-            />
-            <span className="label">Área aproximada</span>
-          </div>
-
-          {/* Quantidade de dispositivos */}
-          <div className="input-wrapper">
-            <input
-              type="text"
-              name="dispositivos"
-              value={formData.dispositivos}
-              onChange={handleInputChange}
-              placeholder=" "
-              aria-label="Quantidade de dispositivos"
-            />
-            <span className="label">Quantidade de dispositivos</span>
-          </div>
-
-          {/* Adicionar imagem */}
-          <div className="input-wrapper">
-            <input
-              type="text"
-              name="imagem"
-              value={formData.imagem}
-              onChange={handleInputChange}
-              placeholder=" "
-              aria-label="Adicionar imagem"
-            />
-            <span className="label">Adicionar imagem</span>
-          </div>
-
-          <p className="p">Deseja receber sugestões para esse espaço?</p>
-          <div className="toggle-switch" onClick={handleToggleChange}>
-            <div className={`boto ${formData.receberSugestoes ? "on" : "off"}`} />
-          </div>
-
-          <button className="button" type="submit">
-            <div className="frame-4">
-              <div className="text-wrapper-10">SALVAR</div>
+    return (
+        <div className="container">
+            <header>
+                <h1>Minha casa</h1>
+            </header>
+            <div className="filter-bar">
+                <div className="indicator"></div> {/* Adicionamos o indicator */}
+                <button
+                    className={`filter-button ${activeTab === 'todos' ? 'active' : ''}`}
+                    data-tab="todos"
+                    onClick={() => handleFilterClick('todos')}
+                >
+                    Todos os dispositivos
+                </button>
+                <button
+                    className={`filter-button ${activeTab === 'filtrar' ? 'active' : ''}`}
+                    data-tab="filtrar"
+                    onClick={() => handleFilterClick('filtrar')}
+                >
+                    Filtrar
+                </button>
             </div>
-          </button>
-        </form>
-
-        {/* Navbar inferior (mantida para consistência visual) */}
-        <div className="overlap-group">
-          {/* ... sua navbar aqui ... */}
+            <main>
+                <div className="add-items">
+                    <Link to="/addnovodispositivo.jsx" className="add-button-link">
+                    <h2>Adicionar itens</h2>
+                    <p>Cadastre aqui seus gadgets inteligentes Voltrix para começar a sua automatização.</p>
+                    <button className="add-button">
+                        <i className="fas fa-plus"></i>
+                    </button>
+                    </Link>
+                </div>
+            </main>
+          
+    
         </div>
-      </div>
-    </div>
-  );
-};
+    );
+}
 
-export default Addnovoespaco;
+export default HomePage;
