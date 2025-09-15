@@ -77,6 +77,7 @@ const Entrar = () => {
         </div>
 
         {/* Navbar inferior */}
+        <nav>
         <div className="overlap-8">
           <div className="rectangle-3" />
           <div className="home-indicator" />
@@ -110,6 +111,7 @@ const Entrar = () => {
             </div>
           </div>
         </div>
+        </nav>
       </div>
     </div>
   );
