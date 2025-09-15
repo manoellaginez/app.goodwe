@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #E60012;
+    margin-bottom: 20px;
+}
+
+/* Abas de filtro */
+.tabs-container {
+    display: flex;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    padding: 4px;
+    margin-bottom: 20px;
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.tab.active {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Cartões de dispositivo */
+.card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.device-card .card-content {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.device-icon {
+    width: 85px;
+    height: 80px;
+    margin-right: 5px;
+}
+
+.device-info {
+    flex-grow: 1;
+}
+
+.device-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.device-details,
+.device-location {
+    font-size: 12px;
+    color: #888;
+    margin-top: 2px;
+}
+
+.device-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #E60012;
+    margin-top: 50px;
+}
+
+/* Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fff;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #E60012;
+}
+
+input:checked + .slider:before {
+    transform: translateX(16px);
+}
+
+/* Botão de adicionar */
+.add-items {
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center;    /* Centraliza o conteúdo verticalmente */
+    width: 100%;
+    margin: 30px auto;
+}
+
+.add-items h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.add-items p {
+    color: #777;
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.add-button {
+    background-color: transparent;
+    border: 2px solid #3b3939;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 2em;
+    color: #3b3939;
+    transition: all 0.2s ease-in-out;
+    margin: 0 auto;
+}
+
+.add-button:hover {
+    border-color: #aaa;
+    color: #aaa;
+}
+
+/* Estilos da barra de navegação */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    background-color: #f6f6f6;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    height: 40px;
+}
+
+/* Estilo para cada item da navegação */
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: #333;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+/* Estilo do ícone */
+.nav-item img {
+    width: 28px;
+    height: 28px;
+}
+
+/* Estilo para o item ativo (Início) */
+.nav-item.active {
+    color: #333;
+    position: relative;
+    padding-top: 20px;
+}
+
+/* Estilo do círculo que envolve o ícone ativo */
+.nav-item.active .nav-circle {
+    position: absolute;
+    top: -10px;
+    width: 70px;
+    height: 70px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    border-color: #E60012;
+    flex-direction: column;
+    margin: -40px 20px 0 20px;
+}
