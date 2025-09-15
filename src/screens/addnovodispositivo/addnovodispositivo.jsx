@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css'; // Mantenha esta linha
+import NavBar from '../../components/NavBar';
 
 // O resto do seu componente React
 function AddDeviceForm() {
@@ -34,6 +35,8 @@ function AddDeviceForm() {
             </div>
 
             <a className="save-button" href='/homepage2'>SALVAR</a>
+
+            <NavBar />
         </div>
     );
 }

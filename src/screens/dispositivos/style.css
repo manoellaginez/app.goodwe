@@ -7,14 +7,11 @@ body {
     padding: 0;
     color: #333;
 }
-.container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 8%;
-}
+
 .header {
     display: flex;
     align-items: center;
+    margin-right: 90px;
     margin-bottom: 20px;
 }
 .header .back-arrow {
@@ -35,6 +32,7 @@ body {
     padding: 10px;
     box-shadow: 0 4px 10px #d6d5d5;
     margin-bottom: 20px;
+    width: 310px;
 }
 .power-card {
     display: flex;
@@ -142,13 +140,13 @@ body {
 .actions-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 5px;
     margin-bottom: 20px;
 }
 .action-item {
     background-color: #f6f6f6;
     border-radius: 6px;
-    padding: 5px;
+    padding: 10px;
     text-align: center;
     box-shadow: 0 4px 10px #d6d5d5;
     cursor: pointer;
@@ -156,10 +154,10 @@ body {
 .action-item .icon {
     font-size: 40px;
     color: #d9534f;
-    margin-bottom: 5px;
+    margin-bottom: 1000px;
 }
 .action-item .label {
-    font-size: 10px;
+    font-size: 13px;
     font-weight: bold;
 }
 /* Modificações para o card de transferência de energia */

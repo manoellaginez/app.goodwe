@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./style.css";
+import NavBar from "../../components/NavBar";
 
 const Dispositivos = () => {
   const navigate = useNavigate(); // Inicializa o hook de navegação
@@ -80,6 +81,8 @@ const Dispositivos = () => {
         </div>
         <img className="brand" src="/img/logo-goodwe.png" alt="GOODWE Logo" />
       </div>
+
+      <NavBar />
     </div>
   );
 };
