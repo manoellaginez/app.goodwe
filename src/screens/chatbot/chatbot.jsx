@@ -1,25 +1,24 @@
 // --- START OF FILE Chatbot.jsx ---
 
 import React, { useState, useEffect, useRef } from 'react';
-import './style.css'; // <--- Adicione esta linha aqui!
+import './chatbot.css'; // <--- Importação direta do CSS
+
+// IMPORTAÇÃO DAS BIBLIOTECAS MARCADO E DOMPURIFY (Certifique-se de tê-las instalado via npm: npm install marked dompurify)
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 
 // === ATENÇÃO DE SEGURANÇA ===
 // Sua API Key do Google Gemini está exposta aqui.
 // ISTO SÓ É ACEITÁVEL SE O PROGRAMA PERMANECER LOCAL NO SEU COMPUTADOR.
 // NUNCA FAÇA DEPLOY EM UM AMBIENTE PÚBLICO NA WEB!
 // PARA DEPLOY PÚBLICO, É IMPRESCINDÍVEL USAR UM BACKEND PROXY.
-const GEMINI_API_KEY = 'SUA_API_KEY_AQUI'; // <<< SUBSTITUA PELA SUA CHAVE REAL
-
-// Assumindo que marked e DOMPurify são carregados via CDN no seu index.html
-// Se você os instalou via npm, descomente as linhas abaixo:
-// import { marked } from 'marked';
-// import DOMPurify from 'dompurify';
+const GEMINI_API_KEY = 'AIzaSyDqrf-Yf-nlerK482hdzjI5fGsWRQBY0r0'; // <<< SUBSTITUA PELA SUA CHAVE REAL
 
 function Chatbot() {
     const chatMessagesRef = useRef(null); // Ref para a div de mensagens para rolagem
     const [inputValue, setInputValue] = useState('');
     const [messages, setMessages] = useState([
-        { text: 'Olá! Sou seu assistente de energia. Posso te ajudar com dúvidas sobre o aplicativo, produtos GoodWe, gerenciar seus dispositivos e verificar o status de energia da sua casa. Como posso ajudar?', role: 'bot', isMarkdown: false }
+        { text: 'Olá! Sou a Voltrix Assistente. Posso te ajudar com dúvidas sobre o aplicativo, produtos GoodWe, gerenciar seus dispositivos e verificar o status de energia da sua casa. Como posso ajudar?', role: 'bot', isMarkdown: false }
     ]);
     const [isInputDisabled, setIsInputDisabled] = useState(false);
     
@@ -75,7 +74,7 @@ function Chatbot() {
         setMessages(prevMessages => {
             const newMessages = [...prevMessages];
             const lastBotMessageIndex = newMessages.length - 1; // Assume que a última é a "digitando..."
-            if (lastBotMessageIndex >= 0 && newMessages[lastBotBotMessageIndex].role === 'bot') {
+            if (lastBotMessageIndex >= 0 && newMessages[lastBotMessageIndex].role === 'bot') {
                 newMessages[lastBotMessageIndex] = { text: newText, role: 'bot', isMarkdown };
             }
             return newMessages;
@@ -89,10 +88,6 @@ function Chatbot() {
         let dispositivos = currentUserData?.dispositivos || []; // Garante que dispositivos seja um array
 
         // === COMANDOS LOCAIS (prioridade 1) ===
-        // ... (Mesma lógica de comandos locais do seu chatbot.js) ...
-        // Certifique-se de que a variável 'dispositivos' usada aqui é a do estado do React,
-        // e que as atualizações de dispositivos chamem 'setCurrentUserData' para persistir.
-
         // 1. Perguntas sobre o aplicativo
         if (lowerCaseMessage.includes('aplicativo') || lowerCaseMessage.includes('app') || lowerCaseMessage.includes('funciona')) {
             localResponse = "Este aplicativo permite que você gerencie seus dispositivos de energia, visualize o consumo total e monitore o status da sua bateria. Você pode cadastrar, editar e desligar dispositivos, além de otimizar o consumo.";
@@ -244,10 +239,12 @@ function Chatbot() {
 
                 let reply = 'Não consegui gerar resposta.';
 
+                // Ajuste para acessar o texto da resposta da API Gemini de forma mais segura
                 if (data && data.error) {
                     reply = `Erro da API Gemini: ${data.error.message || JSON.stringify(data.error)}`;
                 } else if (data?.candidates && Array.isArray(data.candidates) && data.candidates.length > 0) {
-                    reply = data.candidates[0]?.content?.parts[0]?.text || reply;
+                    // Verificação adicional para garantir que 'parts' e 'text' existem
+                    reply = data.candidates[0]?.content?.parts?.[0]?.text || reply;
                 }
                 return reply;
 
@@ -304,15 +301,36 @@ function Chatbot() {
             </header>
 
             <div className="chat-messages" id="chatMessages" ref={chatMessagesRef}>
-                {messages.map((msg, index) => (
-                    <div
-                        key={index} // Keys são importantes para listas em React
-                        className={`message ${msg.role}-message`}
-                        dangerouslySetInnerHTML={msg.isMarkdown ? { __html: DOMPurify.sanitize(marked.parse(msg.text)) } : undefined}
-                    >
-                        {!msg.isMarkdown && msg.text}
-                    </div>
-                ))}
+                {messages.map((msg, index) => {
+                    let renderedContent;
+                    let isDangerousHtml = false; // Flag para controlar dangerouslySetInnerHTML
+
+                    if (msg.isMarkdown) {
+                        try {
+                            // Processa Markdown e sanitiza
+                            renderedContent = DOMPurify.sanitize(marked.parse(msg.text));
+                            isDangerousHtml = true; // Indica que o conteúdo é HTML seguro e deve ser injetado
+                        } catch (e) {
+                            console.error("Erro ao renderizar Markdown:", e, "Mensagem original:", msg.text);
+                            // Fallback para exibir o texto puro se houver erro de Markdown
+                            renderedContent = `[Erro de formatação]: ${msg.text}`;
+                            isDangerousHtml = false; // Exibe como texto normal
+                        }
+                    } else {
+                        // Se não for Markdown, é apenas texto puro
+                        renderedContent = msg.text;
+                        isDangerousHtml = false;
+                    }
+
+                    return (
+                        <div
+                            key={index}
+                            className={`message ${msg.role}-message`}
+                            // Condicionalmente aplica dangerouslySetInnerHTML ou children
+                            {...(isDangerousHtml ? { dangerouslySetInnerHTML: { __html: renderedContent } } : { children: renderedContent })}
+                        />
+                    );
+                })}
             </div>
 
             <div className="chat-input-area">

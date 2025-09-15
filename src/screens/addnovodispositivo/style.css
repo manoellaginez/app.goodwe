@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/* Remova a linha @import daqui se ainda estiver */
 
 body {
     font-family: "Inter", sans-serif;
@@ -15,7 +15,7 @@ body {
     width: 100%;
     max-width: 375px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(199, 22, 22, 0.1);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -25,22 +25,26 @@ body {
     box-sizing: border-box;
 }
 
+/* Aplicando a fonte diretamente nos elementos */
 h1 {
-    color: #e4002b;
+    font-family: "Inter", sans-serif;
+    color: #b42222;
     font-size: 24px;
     margin-bottom: 25px;
     font-weight: 600;
 }
 
 h2 {
-    color: #333;
+    font-family: "Inter", sans-serif;
+    color: #000000;
     font-size: 18px;
     margin-bottom: 5px;
     font-weight: 600;
 }
 
 p {
-    color: #666;
+    font-family: "Inter", sans-serif;
+    color: #a4a4a4;
     font-size: 14px;
     line-height: 1.4;
     margin-bottom: 20px;
@@ -50,31 +54,29 @@ p {
     margin-bottom: 20px;
 }
 
-.input-label {
-    color: #333;
-    font-size: 15px;
-    font-weight: 500;
-    display: block;
-}
-
 .input-field {
+    font-family: "Inter", sans-serif;
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    border: none;
+    border-radius: 10px;
     box-sizing: border-box;
     font-size: 16px;
-    color: #333;
-    background-color: #fff;
+    color: #a5a5a5;
+    background-color: #F6F6F6;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    outline: none;
 }
 
 .input-field::placeholder {
-    color: #aaa;
+    font-family: "Inter", sans-serif;
+    color: #a6a6a6;
 }
 
 .hint-text {
+    font-family: "Inter", sans-serif;
     font-size: 12px;
-    color: #888;
+    color: #a4a4a4;
     margin-top: 5px;
     display: block;
 }
@@ -89,12 +91,12 @@ p {
 }
 
 .toggle-section label {
-    color: #333;
+    font-family: "Inter", sans-serif;
+    color: #a6a6a6;
     font-size: 16px;
     font-weight: 500;
     flex-grow: 1;
 }
-
 
 .switch {
     position: relative;
@@ -136,11 +138,12 @@ p {
 }
 
 input:checked + .slider {
-    background-color: #e4002b;
+    background-color: #b42222;
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #e4002b;
+    box-shadow: 0 0 1px #b42222;
+    outline: none;
 }
 
 input:checked + .slider:before {
@@ -150,9 +153,10 @@ input:checked + .slider:before {
 }
 
 .save-button {
+    font-family: "Inter", sans-serif;
     width: 100%;
     padding: 15px;
-    background-color: #e4002b;
+    background-color: #b42222;
     color: white;
     border: none;
     border-radius: 8px;
@@ -164,5 +168,5 @@ input:checked + .slider:before {
 }
 
 .save-button:hover {
-    background-color: #c00020;
+    background-color: #b42222;
 }

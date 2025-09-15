@@ -28,7 +28,7 @@ function Entre() {
 
     if (contaEncontrada) {
       sessionStorage.setItem("usuarioLogadoEmail", contaEncontrada.email);
-      navigate("/entrar"); // Redireciona para a rota /entrar
+      navigate("/homepage"); // Redireciona para a rota /homepage
     } else {
       alert("Email ou senha incorretos!");
     }

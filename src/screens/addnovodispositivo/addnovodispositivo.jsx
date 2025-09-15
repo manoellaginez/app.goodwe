@@ -1,6 +1,7 @@
 import React from 'react';
-import './style.css';
+import './style.css'; // Mantenha esta linha
 
+// O resto do seu componente React
 function AddDeviceForm() {
     return (
         <div className="container">

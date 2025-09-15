@@ -40,9 +40,9 @@ function HomePage() {
                 <div className="add-items">
                     <Link to="/addnovodispositivo" className="add-button-link">
                         <h2>Adicionar itens</h2>
-                        <p>Cadastre aqui seus gadgets inteligentes Voltrix para começar a sua automatização.</p>
+                        <p>Cadastre aqui seus gadgets inteligentes Voltrix para começar a sua automatização</p>
                         <button className="add-button">
-                            {/* O ícone Font Awesome também precisa ser importado ou configurado */}
+                            <img src="/img/plus.png" alt="Ícone para adicionar um novo dispositivo" />
                             <i className="fas fa-plus"></i>
                         </button>
                     </Link>

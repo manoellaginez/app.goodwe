@@ -2,6 +2,7 @@
 
 body {
     font-family: "Inter", sans-serif;
+    font-weight: 600;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -20,66 +21,71 @@ body {
     min-height: 100vh;
     position: relative;
     overflow: hidden;
+    /* Removido: align-items: center; */
 }
 
 header {
     padding: 20px;
     background-color: #fff;
-    text-align: left;
+    text-align: left; /* Título alinhado à esquerda, como você quer */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 header h1 {
-    color: #e60023;
+    color: #b42222;
     margin: 0;
     font-size: 2em;
 }
 
 .filter-bar {
-    position: relative; /* Necessário para posicionar o indicator */
+    width: 350px;
+    height: 32px;
+    position: relative;
     display: flex;
-    padding: 3px; 
-    background-color: #f0f0f0;
+    padding: 3px;
+    background-color: #D9D9D9;
     border-radius: 10px;
-    margin: 0 20px;
-    box-shadow: 0px 4px 4px rgba(0,0,0,0.1);
-    overflow: hidden; /* Garante que o indicador não saia */
+    margin: 20px auto; /* Centraliza a barra de filtro */
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .filter-bar .indicator {
     position: absolute;
     top: 3px;
-    left: 3px; /* Posição inicial para o primeiro botão */
-    width: calc(50% - 3px); /* Metade da largura do filter-bar, descontando o padding */
-    height: calc(100% - 6px); /* Altura total do filter-bar, descontando o padding */
+    left: 3px;
+    width: calc(50% - 3px);
+    height: calc(100% - 6px);
     background: #ffffff;
     border-radius: 8px;
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.15); 
-    transition: left 0.3s ease; /* Transição para o movimento horizontal */
-    z-index: 0; 
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.15);
+    transition: left 0.3s ease;
+    z-index: 0;
 }
 
 .filter-bar .indicator.right {
-    left: calc(50% + 1.5px); /* Move para a direita */
+    left: calc(50% + 1.5px);
 }
 
-
 .filter-bar button {
-    flex: 1; /* Divide o espaço igualmente entre os botões */
+    flex: 1;
     padding: 6px;
     border: none;
     background-color: transparent;
     cursor: pointer;
     font-size: 0.9em;
     font-weight: bold;
-    color: #555;
+    color: #000000;
     border-radius: 5px;
     position: relative;
     z-index: 1;
-    transition: color 0.3s ease; /* Tempo de transição de cor */
+    transition: color 0.3s ease;
 }
 
 .filter-bar button.active {
-    color: #333;
+    color: #000000;
 }
 
 main {
@@ -89,6 +95,8 @@ main {
     align-items: center;
     padding: 20px;
     text-align: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .add-items {
@@ -98,19 +106,23 @@ main {
 .add-items h2 {
     font-size: 1.8em;
     margin-bottom: 10px;
-    color: #333;
+    color: #000000;
 }
 
 .add-items p {
-    color: #777;
+    color: #a4a4a4;
     font-size: 0.9em;
     line-height: 1.5;
     margin-bottom: 30px;
 }
 
+.add-items a {
+    text-decoration: none;
+}
+
 .add-button {
     background-color: transparent;
-    border: 2px solid #3b3939;
+    border: 2px solid #000000;
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -128,4 +140,3 @@ main {
     border-color: #aaa;
     color: #aaa;
 }
-
