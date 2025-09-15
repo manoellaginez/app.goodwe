@@ -1,22 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Importa o componente Link
 import './style.css'; 
 
-//addnovoespaco agora equivale a página "Minha casa"
 function HomePage() {
     const [activeTab, setActiveTab] = useState('todos'); 
 
-    // useEffect para simular o comportamento do script no DOM
-    useEffect(() => {
-        const indicator = document.querySelector('.filter-bar .indicator');
-        if (indicator) {
-            if (activeTab === 'filtrar') {
-                indicator.classList.add('right');
-            } else {
-                indicator.classList.remove('right');
-            }
-        }
-    }, [activeTab]); // Roda sempre que activeTab mudar
-
+    // O uso de document.querySelector pode causar problemas.
+    // O ideal é gerenciar a mudança de estado e classes diretamente no JSX.
+    // No seu caso, o useEffect não é necessário se você fizer o controle via estado.
+    // Por exemplo: <button className={activeTab === 'filtrar' ? 'active' : ''}>
+    
     const handleFilterClick = (tabName) => {
         setActiveTab(tabName);
     };
@@ -27,7 +20,7 @@ function HomePage() {
                 <h1>Minha casa</h1>
             </header>
             <div className="filter-bar">
-                <div className="indicator"></div> {/* Adicionamos o indicator */}
+                <div className="indicator"></div>
                 <button
                     className={`filter-button ${activeTab === 'todos' ? 'active' : ''}`}
                     data-tab="todos"
@@ -45,17 +38,16 @@ function HomePage() {
             </div>
             <main>
                 <div className="add-items">
-                    <Link to="/addnovodispositivo.jsx" className="add-button-link">
-                    <h2>Adicionar itens</h2>
-                    <p>Cadastre aqui seus gadgets inteligentes Voltrix para começar a sua automatização.</p>
-                    <button className="add-button">
-                        <i className="fas fa-plus"></i>
-                    </button>
+                    <Link to="/addnovodispositivo" className="add-button-link">
+                        <h2>Adicionar itens</h2>
+                        <p>Cadastre aqui seus gadgets inteligentes Voltrix para começar a sua automatização.</p>
+                        <button className="add-button">
+                            {/* O ícone Font Awesome também precisa ser importado ou configurado */}
+                            <i className="fas fa-plus"></i>
+                        </button>
                     </Link>
                 </div>
             </main>
-          
-    
         </div>
     );
 }

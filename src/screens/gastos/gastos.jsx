@@ -1,90 +1,81 @@
-import React from "react";
-import "./style.css";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Gastos = () => {
-  return (
-    <div className="gastos">
-      <div className="div">
-        <div className="overlap">
-          <div className="overlap-group">
-            <div className="home-indicator" />
+import './style.css';
 
-            <div className="rectangle" />
+function Gastos() {
+    const navigate = useNavigate();
 
-            <div className="text-wrapper">Mais</div>
+    const [totalGasto, setTotalGasto] = useState('R$ 0,00');
+    const [detalhesGastos, setDetalhesGastos] = useState([]);
 
-            <div className="home-indicator-2">
-              <div className="home-indicator-3" />
+    // Efeito para simular os valores da imagem ao carregar a página
+    useEffect(() => {
+        // Redireciona para o login se não houver um usuário logado
+        const usuarioLogadoEmail = sessionStorage.getItem('usuarioLogadoEmail');
+        if (!usuarioLogadoEmail) {
+            navigate('/Logar.html');
+            return;
+        }
 
-              <img className="element" alt="Element" src="/img/logoautomacao.png" />
+        // Simula os valores exatos da imagem
+        setTotalGasto('R$ 47,85');
+        setDetalhesGastos([
+            {
+                type: 'device',
+                nome: 'Tomada 01',
+                tempoDeUso: 'XX', // Usando 'XX' como string para "XX horas"
+                consumoBase: null, // Não é mais necessário, então definimos como null
+                gastoEmReais: 22.31,
+                tipoDispositivo: 'TV',
+            },
+        ]);
+    }, [navigate]);
 
-              <img className="img" alt="Element" src="/img/logogastos.png" />
+    const handleBackClick = () => {
+        navigate('/index.html');
+    };
 
-              <div className="text-wrapper-2">Início</div>
+    return (
+        <div className="wrapper">
+            <header className="header-gastos">
+                <div>
+                    <button id="btnVoltar" className="back-btn" onClick={handleBackClick}>&lt;</button>
+                </div>
+                <h1>Gastos de Energia</h1>
+            </header>
 
-              <div className="home-indicator-4" />
+            <div className="resumo-gastos-container">
+                <h2>Seu gasto total é de...</h2>
+                <h1 id="totalGasto">{totalGasto}</h1>
+
+                <div className="detalhes-gastos" id="detalhesGastos">
+                    {detalhesGastos.map((item, index) => {
+                        if (item.type === 'message') {
+                            return <p key={index}>{item.text}</p>;
+                        } else {
+                            return (
+                                <div className="detalhe-item" key={index}>
+                                    <div className="detalhe-info">
+                                        <strong>{item.nome}</strong>
+                                        <span>R$ {item.gastoEmReais.toFixed(2).replace('.', ',')}</span>
+                                    </div>
+                                    <div className="detalhe-subinfo">
+                                        <span>Tempo de Uso</span>
+                                        <span>{item.tempoDeUso} horas</span>
+                                    </div>
+                                    <div className="detalhe-subinfo">
+                                        <span>Tipo</span>
+                                        <span>{item.tipoDispositivo}</span>
+                                    </div>
+                                </div>
+                            );
+                        }
+                    })}
+                </div>
             </div>
-
-            <img className="element-2" alt="Element" src="/img/logodicas.png" />
-
-            <img className="element-3" alt="Element" src="/img/logomais.png" />
-
-            <img className="element-4" alt="Element" src="/img/logoinicio.png" />
-          </div>
-
-          <div className="text-wrapper-3">Automação</div>
-
-          <div className="text-wrapper-4">Gastos</div>
-
-          <div className="text-wrapper-5">Dicas</div>
         </div>
-
-        <div className="overlap-2">
-          <div className="frame">
-            <div className="overlap-group-2">
-              <div className="rectangle-2" />
-
-              <div className="text-wrapper-6">180 kWh / mês</div>
-            </div>
-
-            <div className="text-wrapper-7">DETALHES</div>
-
-            <p className="ilumina-o-chuveiro">
-              Iluminação <br />
-              Chuveiro elétrico
-              <br />
-              Geladeira <br />
-              TV <br />
-              Ar-condicionado
-              <br />
-              Demais itens
-            </p>
-
-            <div className="element-5">
-              10% <br />
-              25%
-              <br />
-              20%
-              <br />
-              5% <br />
-              30%
-              <br />
-              10%
-            </div>
-
-            <div className="text-wrapper-8">
-              &lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &gt;
-            </div>
-          </div>
-
-          <div className="text-wrapper-9">SETEMBRO</div>
-        </div>
-
-        <p className="p">Seu gasto atual é de...</p>
-      </div>
-    </div>
-  );
-};
+    );
+}
 
 export default Gastos;
