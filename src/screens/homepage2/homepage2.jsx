@@ -64,8 +64,8 @@ const HomePage2 = () => {
         <div className="nav-item active">
           <div className="nav-circle">
             <img src="/img/home.png" alt="Ícone de Início" />
+            <span>Início</span>
           </div>
-          <span>Início</span>
         </div>
         <div className="nav-item">
           <img src="/img/conta.png" alt="Ícone de Conta" />

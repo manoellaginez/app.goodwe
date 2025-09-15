@@ -19,22 +19,30 @@ body {
     font-weight: 700;
     color: #E60012;
     margin-bottom: 20px;
+    margin-right: 190px;
 }
 
 /* Abas de filtro */
 .tabs-container {
+    width: 330px;
+    height: 32px;
+    position: relative;
     display: flex;
-    background-color: #e0e0e0;
-    border-radius: 8px;
-    padding: 4px;
-    margin-bottom: 20px;
+    padding: 3px;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    margin: 20px auto; /* Centraliza a barra de filtro */
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    box-sizing: border-box;
+    align-items: center;
 }
 
 .tab {
     flex: 1;
     text-align: center;
     padding: 8px 0;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     color: #333;
     cursor: pointer;
@@ -42,6 +50,8 @@ body {
 }
 
 .tab.active {
+    align-items: center;
+    height: 10px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -58,13 +68,13 @@ body {
 .device-card .card-content {
     display: flex;
     align-items: center;
-    padding: 15px;
 }
 
 .device-icon {
     width: 85px;
     height: 80px;
     margin-right: 5px;
+    margin-top: 7px;
 }
 
 .device-info {
@@ -72,21 +82,28 @@ body {
 }
 
 .device-name {
-    font-size: 16px;
+    position: absolute;
+    max-width: 200px;
+    font-size: 14px;
     font-weight: 600;
     color: #333;
 }
 
-.device-details,
+.device-details{
+    font-size: 12px;
+    color: #888;
+    margin-top: 20px;
+}
+
 .device-location {
     font-size: 12px;
     color: #888;
-    margin-top: 2px;
 }
 
 .device-status {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 8px;
     font-size: 14px;
     font-weight: 600;
@@ -98,36 +115,30 @@ body {
 .switch {
     position: relative;
     display: inline-block;
-    width: 40px;
-    height: 24px;
 }
 
 .switch input {
     opacity: 0;
-    width: 0;
     height: 0;
 }
 
 .slider {
+    width: 50px;
     position: absolute;
     cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     background-color: #ccc;
+    -webkit-transition: .4s;
     transition: .4s;
-    border-radius: 24px;
+    border-radius: 28px;
 }
 
 .slider:before {
     position: absolute;
     content: "";
-    height: 16px;
-    width: 16px;
-    left: 4px;
+    height: 20px;
     bottom: 4px;
-    background-color: #fff;
+    background-color: white;
+    -webkit-transition: .4s;
     transition: .4s;
     border-radius: 50%;
 }
@@ -136,8 +147,15 @@ input:checked + .slider {
     background-color: #E60012;
 }
 
+input:focus + .slider {
+    box-shadow: 0 0 1px #E60012;
+    outline: none;
+}
+
 input:checked + .slider:before {
-    transform: translateX(16px);
+    -webkit-transform: translateX(22px);
+    -ms-transform: translateX(22px);
+    transform: translateX(22px);
 }
 
 /* Botão de adicionar */
@@ -197,6 +215,8 @@ input:checked + .slider:before {
     border-top: 1px solid #eee;
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
     height: 40px;
+    width: 372px;
+    margin-left: 220px;
 }
 
 /* Estilo para cada item da navegação */

@@ -17,7 +17,7 @@ function AddDeviceForm() {
 
             <div className="input-group">
                 <input type="text" className="input-field" placeholder="Local do dispositivo" />
-                <span className="hint-text">Ambiente que o Voltrix estará instalado.</span>
+                <span className="hint-text">Ambiente que o Voltrix estará instalado. Exemplo: Sala de jantar, Cozinha, Quarto 1 e etc.</span>
             </div>
 
             <div className="input-group">
@@ -33,7 +33,7 @@ function AddDeviceForm() {
                 </label>
             </div>
 
-            <button className="save-button">SALVAR</button>
+            <a className="save-button" href='/homepage2'>SALVAR</a>
         </div>
     );
 }

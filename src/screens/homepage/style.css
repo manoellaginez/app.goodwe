@@ -4,28 +4,22 @@ body {
     font-family: "Inter", sans-serif;
     font-weight: 600;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    background-color: #f0f0f0;
+    padding: 0;
 }
 
 .container {
-    width: 100%;
     max-width: 375px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
     position: relative;
     overflow: hidden;
-    /* Removido: align-items: center; */
+    align-items: center;
 }
 
 header {
-    padding: 20px;
+    padding: 8px;
     background-color: #fff;
     text-align: left; /* Título alinhado à esquerda, como você quer */
     width: 100%;
@@ -33,13 +27,15 @@ header {
 }
 
 header h1 {
-    color: #b42222;
-    margin: 0;
-    font-size: 2em;
+    font-size: 24px;
+    font-weight: 700;
+    color: #E60012;
+    margin-bottom: 20px;
+    margin-right: 150px;
 }
 
 .filter-bar {
-    width: 350px;
+    width: 330px;
     height: 32px;
     position: relative;
     display: flex;
@@ -75,7 +71,7 @@ header h1 {
     border: none;
     background-color: transparent;
     cursor: pointer;
-    font-size: 0.9em;
+    font-size: 12px;
     font-weight: bold;
     color: #000000;
     border-radius: 5px;

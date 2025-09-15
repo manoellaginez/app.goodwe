@@ -28,7 +28,7 @@ body {
 /* Aplicando a fonte diretamente nos elementos */
 h1 {
     font-family: "Inter", sans-serif;
-    color: #b42222;
+    color: #E60012;
     font-size: 24px;
     margin-bottom: 25px;
     font-weight: 600;
@@ -138,11 +138,11 @@ p {
 }
 
 input:checked + .slider {
-    background-color: #b42222;
+    background-color: #E60012;
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #b42222;
+    box-shadow: 0 0 1px #E60012;
     outline: none;
 }
 
@@ -155,16 +155,18 @@ input:checked + .slider:before {
 .save-button {
     font-family: "Inter", sans-serif;
     width: 100%;
-    padding: 15px;
-    background-color: #b42222;
+    padding: 10px;
+    background-color: #E60012;
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 400;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
 }
 
 .save-button:hover {
