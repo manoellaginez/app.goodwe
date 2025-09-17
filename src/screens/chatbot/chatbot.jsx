@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import './chatbot.css'; // <--- Importação direta do CSS
+import NavBar from "../../components/NavBar";
 
 // IMPORTAÇÃO DAS BIBLIOTECAS MARCADO E DOMPURIFY (Certifique-se de tê-las instalado via npm: npm install marked dompurify)
 import { marked } from 'marked';
@@ -12,7 +13,7 @@ import DOMPurify from 'dompurify';
 // ISTO SÓ É ACEITÁVEL SE O PROGRAMA PERMANECER LOCAL NO SEU COMPUTADOR.
 // NUNCA FAÇA DEPLOY EM UM AMBIENTE PÚBLICO NA WEB!
 // PARA DEPLOY PÚBLICO, É IMPRESCINDÍVEL USAR UM BACKEND PROXY.
-const GEMINI_API_KEY = 'AIzaSyDqrf-Yf-nlerK482hdzjI5fGsWRQBY0r0'; // <<< SUBSTITUA PELA SUA CHAVE REAL
+const GEMINI_API_KEY = ''; // <<< SUBSTITUA PELA SUA CHAVE REAL
 
 function Chatbot() {
     const chatMessagesRef = useRef(null); // Ref para a div de mensagens para rolagem
@@ -345,6 +346,7 @@ function Chatbot() {
                     disabled={isInputDisabled}
                 />
             </div>
+            <NavBar/>
         </div>
     );
 }

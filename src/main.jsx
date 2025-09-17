@@ -11,6 +11,7 @@ import HomePage2 from "./screens/homepage2/homepage2.jsx"; // Importa o novo com
 import Addnovodispositivo from "./screens/addnovodispositivo/addnovodispositivo.jsx";
 import Gastos from "./screens/gastos/gastos.jsx"; 
 import Chatbot from "./screens/chatbot/chatbot.jsx";
+import DetalhesDispositivo from "./screens/detalhesdispositivo/detalhesdispositivo.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/cadastro1" element={<Cadastro1 />} />
         <Route path="/dispositivos" element={<Dispositivos />} />
+        <Route path="/detalhesdispositivo" element={<DetalhesDispositivo/>}/>
         <Route path="/entre" element={<Entre />} />
         <Route path="/homepage" element={<HomePage />} />
         <Route path="/homepage2" element={<HomePage2 />} />

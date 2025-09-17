@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import './style.css';
+import NavBar from "../../components/NavBar";
 
 function Gastos() {
     const navigate = useNavigate();
@@ -74,6 +74,7 @@ function Gastos() {
                     })}
                 </div>
             </div>
+            <NavBar/>
         </div>
     );
 }

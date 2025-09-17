@@ -1,12 +1,7 @@
-// --- START OF FILE DetalhesDispositivo.jsx ---
-
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Para gerenciar parâmetros de URL e navegação no React Router
-// import { marked } from 'marked'; // Descomente se instalou via npm
-// import DOMPurify from 'dompurify'; // Descomente se instalou via npm
-
-// Se você tiver um arquivo CSS separado para este componente, importe-o aqui:
+import { useParams, useNavigate } from 'react-router-dom'; 
 import '../css/detalhes-dispositivo.css'; 
+import NavBar from "../../components/NavBar";
 
 // === ATENÇÃO DE SEGURANÇA ===
 // Sua API Key do Google Gemini está exposta neste arquivo JavaScript.
@@ -244,11 +239,10 @@ function DetalhesDispositivo() {
                 </div>
             </div>
 
-            {/* A barra de navegação inferior foi removida conforme sua solicitação */}
+            <NavBar/>
         </div>
+        
     );
 }
 
 export default DetalhesDispositivo;
-
-// --- END OF FILE DetalhesDispositivo.jsx ---
