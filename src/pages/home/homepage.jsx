@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Importa o componente Link
-import './style.css'; 
+import { Link } from 'react-router-dom';
 import NavBar from "../../components/NavBar";
 
 function HomePage() {

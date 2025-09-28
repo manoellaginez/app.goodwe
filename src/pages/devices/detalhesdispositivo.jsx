@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; 
-import '../css/detalhes-dispositivo.css'; 
 import NavBar from "../../components/NavBar";
 
 // === ATENÇÃO DE SEGURANÇA ===

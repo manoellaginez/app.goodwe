@@ -1,7 +1,4 @@
-// --- START OF FILE Chatbot.jsx ---
-
 import React, { useState, useEffect, useRef } from 'react';
-import './chatbot.css'; // <--- Importação direta do CSS
 import NavBar from "../../components/NavBar";
 
 // IMPORTAÇÃO DAS BIBLIOTECAS MARCADO E DOMPURIFY (Certifique-se de tê-las instalado via npm: npm install marked dompurify)

@@ -1,5 +1,4 @@
 import React from 'react';
-import './style.css'; // Mantenha esta linha
 import NavBar from '../../components/NavBar';
 
 // O resto do seu componente React

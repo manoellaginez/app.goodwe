@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import "./style.css";
 import NavBar from "../../components/NavBar";
 
 const Dispositivos = () => {
