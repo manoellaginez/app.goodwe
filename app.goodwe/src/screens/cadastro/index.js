@@ -1,1 +1,0 @@
-export { Cadastro } from "../../../../screens/cadastro/cadastro";

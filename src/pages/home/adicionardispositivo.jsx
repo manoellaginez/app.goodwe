@@ -1,0 +1,123 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+export default function AdicionarDispositivo({ onAddDevice }) {
+  const navigate = useNavigate();
+  const [name, setName] = useState('');
+  const [room, setRoom] = useState('');
+  const [token, setToken] = useState('');
+  const [suggestions, setSuggestions] = useState(false); // Para o toggle
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!name || !room || !token) {
+      alert('Por favor, preencha todos os campos obrigatórios.');
+      return;
+    }
+    
+    // Cria o novo objeto dispositivo
+    const newDevice = {
+      name,
+      room,
+      type: 'Tomada', // Assumindo 'Tomada' pelo seu formulário
+      status: false, // Começa sempre desligado
+    };
+
+    // Chama a função passada pelo App.jsx para adicionar o dispositivo
+    onAddDevice(newDevice);
+
+    // Redireciona de volta para a tela inicial
+    navigate('/');
+  };
+
+  return (
+    <div className="device-list-container">
+      {/* Estilos para o texto vermelho (se não estiver no index.css, terá que ser criado) */}
+      <h1 style={{ color: '#e60012', fontSize: '24px', fontWeight: 'bold', marginTop: '20px' }}>
+        Adicionar novo dispositivo
+      </h1>
+      
+      <h2 style={{ fontSize: '18px', fontWeight: 'bold', marginTop: '15px' }}>
+        Cadastre sua tomada Voltrix
+      </h2>
+      <p style={{ color: '#a4a4a4', fontSize: '14px', marginBottom: '30px' }}>
+        Siga as instruções da caixa do seu produto e cadastre o token para conectar com o aplicativo
+      </p>
+
+      <form className="device-form" onSubmit={handleSubmit}>
+        
+        {/* Campo Nome da tomada */}
+        <div style={{ marginBottom: '20px' }}>
+          <input
+            type="text"
+            placeholder="Nome da tomada"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            style={{ border: 'none', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06)' }}
+          />
+          <p style={{ fontSize: '12px', color: '#a4a4a4', marginTop: '5px' }}>
+            Escolha um nome para sua tomada para o que ela atende. Exemplo: Chuveiro elétrico
+          </p>
+        </div>
+
+        {/* Campo Local do dispositivo */}
+        <div style={{ marginBottom: '20px' }}>
+          <input
+            type="text"
+            placeholder="Local do dispositivo"
+            value={room}
+            onChange={(e) => setRoom(e.target.value)}
+            style={{ border: 'none', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06)' }}
+          />
+          <p style={{ fontSize: '12px', color: '#a4a4a4', marginTop: '5px' }}>
+            Ambiente que o Voltrix estará instalado
+          </p>
+        </div>
+
+        {/* Campo Token */}
+        <div style={{ marginBottom: '30px' }}>
+          <input
+            type="text"
+            placeholder="Token"
+            value={token}
+            onChange={(e) => setToken(e.target.value)}
+            style={{ border: 'none', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06)' }}
+          />
+          <p style={{ fontSize: '12px', color: '#a4a4a4', marginTop: '5px' }}>
+            Verifique e digite o código de Token da caixa do produto Voltrix
+          </p>
+        </div>
+
+        {/* Toggle Sugestões */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px' }}>
+          <p style={{ fontWeight: 'bold' }}>Deseja receber sugestões para esse dispositivo?</p>
+          {/* Usamos o toggle do CSS que criamos antes */}
+          <div 
+            className="device-toggle"
+            style={{ backgroundColor: suggestions ? '#e60012' : '#d9d9d9' }} // Fundo vermelho para ativo
+            onClick={() => setSuggestions(!suggestions)}
+          >
+            <div 
+              className="device-toggle-circle"
+              style={{ 
+                transform: suggestions ? 'translateX(20px)' : 'translateX(2px)',
+                backgroundColor: suggestions ? 'white' : 'white'
+              }}
+            ></div>
+          </div>
+        </div>
+
+
+        {/* Botão Salvar (VERMELHO) */}
+        <button 
+          type="submit" 
+          className="add-device-button"
+          style={{ backgroundColor: '#e60012', fontWeight: 'bold' }} // Cor do botão vermelho do seu layout
+        >
+          SALVAR
+        </button>
+      </form>
+
+    </div>
+  );
+}
