@@ -32,26 +32,61 @@ body {
     width: 366px;
 }
 
-label {
-    font-size: 25px;
+.label-1 {
+    font-size: 20px;
     font-weight: bold;
-    color: #E60012; 
-    margin-bottom: 20px;
+    color: #E60012;
+    margin-bottom: 18px;
 }
 
 input{
-    padding: 3px;
+    padding: 6px;
     background-color: #F6F6F6;
     border: none;
-    border-radius: 8px;
-    font-size: 13px;
-    margin-bottom: 8px;
+    border-radius: 7px;
+    font-size: 10px;
+    margin-bottom: 15px;
     outline: none;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 20em;
 }
 
 ::placeholder{
   color: #A6A6A6;
+  font-weight: 600;
+}
+
+button{
+    padding: 8px;
+    width: 21em;
+    background-color: #E60012; 
+    color: #ffffff; 
+    border: none;
+    border-radius: 6px; 
+    font-size: 10px;
+    cursor: pointer;
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
+}
+
+button:hover { 
+    background-color: #c90000;
+    transform: translateY(-1px);
+}
+
+button:active {
+    background-color: #b00000;
+    transform: translateY(0);
+}
+
+/*containers das paginas*/
+
+/*Cadastro*/
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 /* Estilo para cada item da navegação */

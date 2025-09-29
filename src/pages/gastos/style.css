@@ -1,0 +1,177 @@
+/* css/gastos.css */
+
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha ao topo para começar o conteúdo */
+    min-height: 100vh;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 600px; /* Limita a largura do conteúdo principal */
+    background-color: #fff;
+    padding: 20px;
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); */ /* Removido para ter um visual mais full-screen como apps */
+    /* border-radius: 8px; */ /* Removido para ter um visual mais full-screen como apps */
+    min-height: 100vh; /* Garante que o wrapper ocupa a altura da tela */
+    display: flex;
+    flex-direction: column;
+}
+
+.header-gastos { /* Novo nome de classe para o header específico desta página */
+    display: flex;
+    /* justify-content: space-between; */ /* Alterado para flex-start */
+    justify-content: flex-start; /* Alinha os itens ao início */
+    align-items: center; /* Centraliza verticalmente o botão e o título */
+    padding-bottom: 15px;
+    border-bottom: none; /* Removido borda, se houver */
+    margin-bottom: 15px; /* Adicionado um margin-bottom */
+    color: #E72B36; /* Cor vermelha para o texto do cabeçalho */
+}
+
+.header-gastos h1 {
+    margin: 0; /* Remove margin padrão */
+    color: #E72B36; /* Cor vermelha do tema */
+    font-size: 24px; /* Ajustado para se encaixar melhor ao lado do botão */
+    font-weight: 500; /* Lighter font weight */
+    margin-left: 15px; /* Espaço entre o botão de voltar e o título */
+}
+
+.back-btn {
+    background-color: transparent;
+    color: #E72B36; /* Vermelho para a seta */
+    border: none;
+    cursor: pointer;
+    font-size: 28px; /* Tamanho maior para a seta */
+    font-weight: bold;
+    padding: 0; /* Remove padding */
+    /* margin-right: 15px; */ /* Removido, o margin-left do h1 faz o espaçamento */
+    transition: color 0.3s;
+}
+
+.back-btn:hover {
+    color: #c0232d;
+}
+
+/* Removido o relógio para corresponder à imagem de referência */
+/* .header-info {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #555;
+}
+
+#relogio-gastos {
+    font-weight: bold;
+} */
+
+.resumo-gastos-container {
+    flex-grow: 1; /* Permite que o container de resumo ocupe o espaço restante */
+    background-color: #fff; /* Fundo branco como na imagem */
+    border-radius: 8px; /* Bordas arredondadas para o card */
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Sombra suave */
+}
+
+.resumo-gastos-container h2 {
+    color: #E72B36; /* Cor vermelha para o "Seu gasto total é de..." */
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: left; /* Alinha à esquerda como na imagem */
+    font-weight: 500; /* Lighter font weight */
+}
+
+#totalGasto {
+    color: #333; /* Cor mais escura para o valor principal */
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: left; /* Alinha à esquerda como na imagem */
+}
+
+.detalhes-gastos {
+    text-align: left;
+    margin-top: 20px;
+    /* border-top: 1px solid #eee; */ /* Removido para corresponder à imagem */
+    padding-top: 0; /* Removido padding-top */
+}
+
+.detalhe-item {
+    display: flex;
+    flex-direction: column; /* Coloca info e valor em linhas separadas */
+    /* justify-content: space-between; */
+    align-items: flex-start; /* Alinha os itens à esquerda */
+    background-color: #f9f9f9; /* Cor de fundo para cada item */
+    border-radius: 8px; /* Bordas arredondadas para os itens */
+    padding: 15px; /* Mais padding */
+    margin-bottom: 10px; /* Espaçamento entre os itens */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05); /* Sombra para os itens */
+}
+
+.detalhe-item:last-child {
+    border-bottom: none;
+}
+
+.detalhe-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 8px; /* Espaço entre o nome/valor e o tempo de uso/tipo */
+}
+
+.detalhe-info strong {
+    font-size: 16px;
+    color: #333;
+}
+
+.detalhe-info span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #E72B36; /* Cor vermelha para o valor do item */
+}
+
+.detalhe-subinfo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #777;
+}
+
+/* Remove 'detalhe-valor' pois as classes 'detalhe-info strong' e 'detalhe-info span' agora controlam */
+/* .detalhe-valor {
+    font-size: 16px;
+    font-weight: bold;
+    color: #E72B36;
+} */
+
+.detalhes-gastos p { /* Estilo para "Nenhum dispositivo cadastrado." */
+    color: #777;
+    text-align: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        padding: 15px;
+        box-shadow: none; /* Sem sombra em telas pequenas */
+        border-radius: 0;
+    }
+    .header-gastos h1 {
+        font-size: 20px; /* Ajuste para mobile */
+    }
+    .back-btn {
+        font-size: 24px; /* Ajuste para mobile */
+    }
+    #totalGasto {
+        font-size: 40px;
+    }
+    .resumo-gastos-container {
+        padding: 20px;
+    }
+}

@@ -1,4 +1,3 @@
-
 export default function Inputs(props){
 
     const type = props.type

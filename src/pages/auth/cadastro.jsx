@@ -5,8 +5,8 @@ import "../../index.css";
 
 export default function Cadastro(){
     return (
-    <div>
-        <label>Cadastro</label>
+    <div className="container">
+        <label className="label-1">Cadastro</label>
         <Inputs type={'text'} placeholder={'Nome'}/>
         <Inputs type={'email'} placeholder={'Email'}/>
         <Inputs type={'password'} placeholder={'Senha'}/>
