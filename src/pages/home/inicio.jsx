@@ -14,7 +14,8 @@ export default function Inicio({ devices, onToggleDevice }) {
   };
 
   // Cor específica para os títulos (Substitua por outra cor se quiser)
-  const titleColor = '#e60012'; // Exemplo: Roxo
+  const titleColor = '#e60012';  
+  const buttonColor = titleColor;
 
   return (
     <div className="device-list-container">
@@ -25,7 +26,7 @@ export default function Inicio({ devices, onToggleDevice }) {
           className="page-title" 
           style={{ margin: '0 0 5px', fontSize: '24px', color: titleColor }} // ESTILO ESPECÍFICO APLICADO AQUI
         >
-          Meus dispositivos
+          Início
         </h1>
         <p style={{ fontSize: '14px', color: 'var(--cor-texto-escuro)' }}>Olá, Manoella</p>
       </div>
@@ -44,7 +45,7 @@ export default function Inicio({ devices, onToggleDevice }) {
 
         {/* Card 2: Custo Hoje */}
         <div className="status-card">
-          <div className="card-icon-circle" style={{ backgroundColor: 'var(--cor-alerta)' }}>
+          <div className="card-icon-circle" style={{ backgroundColor: titleColor }}>
             <FaDollarSign style={{ color: 'white' }} />
           </div>
           <p className="card-label">Custo hoje</p>
@@ -62,15 +63,15 @@ export default function Inicio({ devices, onToggleDevice }) {
       </div>
 
       {/* BOTÃO ADICIONAR DISPOSITIVO */}
-      <Link to="/adicionar-dispositivo" className="add-device-button">
-        <FaPlus style={{ marginRight: '10px' }} /> Adicionar dispositivo
-      </Link>
+	     <Link to="/adicionar-dispositivo" className="add-device-button">
+		    ADICIONAR DISPOSITIVO
+	     </Link>
       
       {/* LISTA DE DISPOSITIVOS */}
       <h2 
         style={{ marginTop: '30px', fontSize: '20px', color: titleColor }} // ESTILO ESPECÍFICO APLICADO AQUI
       >
-        Dispositivos recentes
+        Meus dispositivos
       </h2>
       
       {devices.map(device => (

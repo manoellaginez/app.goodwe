@@ -4,7 +4,7 @@ import React from 'react';
 function Mais() {
   return (
     <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h1>Página de Mais</h1>
+      <h1>Página de mais</h1>
       <p>Conteúdo da seção de controle e análise de gastos virá aqui.</p>
     </div>
   );

@@ -1,16 +1,13 @@
 import React from 'react';
-// Importamos o ícone de lâmpada. Se você tiver outros ícones instalados, pode usar eles.
-import { FaLightbulb } from 'react-icons/fa';
-
-// Usamos o 'export default' para corrigir o erro de exportação!
-export default function DispositivoCard({ device, onToggle }) {
+import { FaLightbulb } from 'react-icons/fa'; // lampada
+export default function DispositivoCard({ device, onToggle }) { // corrigir erro de exportacao
   
-  // Função que será chamada ao clicar no toggle
+// funcao chamada ao clicar no toggle
   const handleToggle = () => {
     onToggle(device.id);
   };
 
-  // Define a classe CSS baseada no status (true = ativo, false = inativo)
+// define a classe css baseada no status
   const cardClassName = `device-card ${device.status ? 'active' : ''}`;
 
   return (

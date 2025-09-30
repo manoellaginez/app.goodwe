@@ -2,16 +2,17 @@
 
 :root {
   /* Cores de Fundo (Claro) */
-  --cor-fundo-principal: #ffffff; /* Cinza muito claro */
-  --cor-fundo-secundario: #f6f6f6; /* Branco Puro para cards e navbar */
+  --cor-fundo-principal: #ffffff; /* Branco Puro */
+  --cor-fundo-secundario: #f6f6f6; /* Cinza muito claro para cards e navbar */
+  --cor-fundo-card: #f6f6f6; /* Fundo do card desligado (branco) */
   
-  /* Cores de Texto */
-  --cor-texto-claro: #a6a6a6; /* Preto para texto principal */
-  --cor-texto-escuro: #a6a6a6; /* Cinza para texto secundário/descrições */
+  /* Cores de Texto CORRIGIDAS */
+  --cor-texto-claro: #a6a6a6; /* PRETO ESCURO (Para texto principal, como valores e nome de usuário) */
+  --cor-texto-escuro: #a6a6a6; /* CINZA (Para texto secundário, como descrições) */
   
   /* Cores de Ação/Destaque */
   --cor-primaria: #e60012; /* VERMELHO: Cor principal de botão/destaque/ligado */
-  --cor-alerta: #dc3545; /* Vermelho (Para desligado no Toggle) */
+  --cor-alerta: #dc3545; /* Vermelho padrão para alertas */
   --cor-sucesso: #28a745; /* Verde (Para feedback de sucesso, mas não o toggle) */
 
   /* Outros */
@@ -19,36 +20,7 @@
   --cor-borda: #e4e6eb; /* Borda suave */
 }
 
-.add-device-button {
-  background-color: #e60012 !important;
-  text-decoration: none;
-}
-
-.device-icon-container {
-  color: var(--cor-primaria);
-}
-
-.device-card.active {
-  background-color: var(--cor-primaria); 
-  color: var(--cor-fundo-secundario);
-}
-
-.device-card.active .device-toggle {
-  background-color: var(--cor-fundo-secundario);
-}
-
-.device-card.active .device-toggle-circle {
-  background-color: var(--cor-sucesso);
-}
-
-.device-toggle {
-  background-color: #cccccc; 
-}
-.device-toggle-circle {
-  background-color: var(--cor-fundo-secundario); 
-}
-
-/* Reset básico e estilos globais */
+/* --- ESTILOS DO BODY CORRIGIDOS --- */
 body {
   margin: 0;
   padding: 0;
@@ -56,17 +28,134 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--cor-fundo-principal);
-  color: var(--cor-texto-claro);
+  color: var(--cor-texto-claro); /* Agora usa PRETO ESCURO */
   min-height: 100vh;
 }
 
-/* Estilo geral da aplicação para empurrar o conteúdo para cima da navbar */
-.app-container {
+/* --- ESTILOS DO CARD E TOGGLE (MANTIDOS E CORRIGIDOS) --- */
+
+/* 1. Botão Adicionar Dispositivo (VERMELHO) */
+.add-device-button {
+  /* CORREÇÃO AQUI: Garante que padding e borda sejam incluídos na largura de 100%,
+     e impede o botão de exceder o espaço disponível */
+  box-sizing: border-box; 
+  max-width: 100%; 
+  
+  background-color: var(--cor-primaria); /* Usa --cor-primaria (VERMELHO) */
+  text-decoration: none;
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  color: var(--cor-fundo-secundario);
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  padding-bottom: 60px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
 }
+
+.add-device-button:hover {
+  background-color: #a72332; /* Tonalidade de vermelho mais escura no hover */
+}
+
+
+/* Card Desligado (Padrão: Fundo Branco, Texto Cinza, Ícone Vermelho) */
+.device-card {
+  background-color: var(--cor-fundo-card); /* Branco */
+  border: 1px solid var(--cor-borda);
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  box-shadow: var(--cor-sombra);
+  transition: all 0.3s;
+}
+
+/* Ícone no Card Desligado é VERMELHO */
+.device-icon-container {
+  font-size: 24px;
+  margin-right: 15px;
+  color: var(--cor-primaria);
+}
+
+/* 2. Card LIGADO: IGUAL ao DESLIGADO, mas com um toque cinza claro de fundo e texto escuro */
+.device-card.active {
+  background-color: var(--cor-fundo-secundario); /* Fundo CINZA CLARO */
+  color: var(--cor-texto-claro); /* Texto Principal PRETO ESCURO */
+  border-color: var(--cor-borda); /* Manter borda suave */
+}
+
+.device-card.active .device-icon-container {
+  color: var(--cor-primaria); /* Ícone VERMELHO (Destacar que é o dispositivo ativo) */
+}
+
+.device-card.active .device-info h3,
+.device-card.active .device-info p {
+  color: var(--cor-texto-claro); /* Texto Principal/Secundário PRETO/CINZA */
+}
+
+/* 3. Toggle DESLIGADO: Trilho Cinza, Bolinha Branca */
+.device-toggle {
+  width: 40px;
+  height: 20px;
+  background-color: #d9d9d9; /* Cinza do Trilho (Desligado) */
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  flex-shrink: 0;
+}
+
+.device-toggle-circle {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: var(--cor-fundo-card); /* Bolinha BRANCA */
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+}
+
+/* 4. Toggle LIGADO: Trilho VERMELHO, Bolinha BRANCA */
+.device-card.active .device-toggle {
+  background-color: var(--cor-primaria); /* Trilho VERMELHO (Destacar Ativo) */
+}
+
+.device-card.active .device-toggle-circle {
+  transform: translateX(20px);
+  background-color: var(--cor-fundo-card); /* Bolinha BRANCA */
+}
+
+/* --- Estilos da Tela Início (Apenas Títulos Vermelhos) --- */
+
+/* Título "Meus dispositivos" e "Dispositivos recentes" */
+.page-title, h2[style*="font-size: 20px"] { 
+  color: var(--cor-primaria) !important; /* Garantir que fique VERMELHO */
+}
+
+/* Estilos de texto padrão (garantindo que não fiquem vermelhos) */
+.device-info h3 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--cor-texto-claro); /* PRETO ESCURO por padrão */
+}
+
+.device-info p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--cor-texto-escuro); /* CINZA por padrão */
+}
+
+/* ... (Outras regras CSS mantidas para brevidade) ... */
 
 /* --- Estilos da Navbar --- */
 .navbar {
@@ -120,7 +209,7 @@ body {
 .status-cards-container {
   display: flex;
   justify-content: space-between;
-  gap: 15px; /* Espaçamento entre os cards */
+  gap: 15px;
   margin-bottom: 15px;
 }
 
@@ -153,6 +242,7 @@ body {
 .card-value {
   font-size: 24px;
   font-weight: bold;
+  color: var(--cor-texto-claro); /* Usa PRETO ESCURO */
   margin: 5px 0 0;
 }
 
@@ -167,7 +257,7 @@ body {
 .consumption-value {
   font-size: 32px;
   font-weight: 700;
-  color: var(--cor-texto-claro);
+  color: var(--cor-texto-claro); /* Usa PRETO ESCURO */
   margin: 10px 0 0;
 }
 
@@ -191,113 +281,23 @@ body {
   opacity: 0.5;
 }
 
-.add-device-button {
-  width: 100%;
-  padding: 15px;
-  margin-top: 20px;
-  /* Cor Primária temporariamente substituída por vermelho do layout */
-  background-color: var(--cor-alerta); 
-  color: var(--cor-fundo-secundario);
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s;
-}
-
-.add-device-button:hover {
-  background-color: #a72332; /* Tonalidade de vermelho mais escura no hover */
-}
-
 /* --- Estilos do DeviceCard --- */
-.device-card {
-  background-color: var(--cor-fundo-secundario);
-  padding: 15px;
-  border-radius: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-  box-shadow: var(--cor-sombra);
-  border: 1px solid var(--cor-borda);
-  transition: all 0.3s;
-}
-
-.device-card.active {
-  background-color: var(--cor-sucesso);
-  color: var(--cor-fundo-secundario);
-}
-
-.device-icon-container {
-  font-size: 24px;
-  margin-right: 15px;
-  color: var(--cor-primaria);
-}
-
-.device-card.active .device-icon-container {
-  color: var(--cor-fundo-secundario);
-}
-
 .device-info {
   flex-grow: 1;
 }
 
-.device-info h3 {
-  margin: 0;
-  font-size: 16px;
-  color: var(--cor-texto-claro);
-}
-
-.device-card.active .device-info h3 {
-    color: var(--cor-fundo-secundario); 
-}
-
-.device-info p {
-  margin: 2px 0 0;
-  font-size: 12px;
-  color: var(--cor-texto-escuro);
-}
-
-.device-card.active .device-info p {
-    color: var(--cor-fundo-secundario);
-}
 
 /* Toggle Switch Styling */
-.device-toggle {
-  width: 40px;
-  height: 20px;
-  background-color: var(--cor-alerta);
-  border-radius: 10px;
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  flex-shrink: 0;
-}
-
-.device-card.active .device-toggle {
-  background-color: var(--cor-fundo-secundario);
-}
-
 .device-toggle-circle {
   position: absolute;
   top: 2px;
   left: 2px;
   width: 16px;
   height: 16px;
-  background-color: var(--cor-fundo-secundario);
+  background-color: var(--cor-fundo-card); /* Bolinha BRANCA (Desligada) */
   border-radius: 50%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s;
-}
-
-.device-card.active .device-toggle-circle {
-  transform: translateX(20px);
-  background-color: var(--cor-sucesso);
 }
 
 
@@ -307,7 +307,7 @@ body {
   display: block;
   margin-bottom: 15px;
   font-weight: bold;
-  color: var(--cor-texto-claro);
+  color: var(--cor-texto-claro); /* Usa PRETO ESCURO */
 }
 
 /* 1. INPUTS: Estilo do estado NORMAL e configuração base */
@@ -319,7 +319,8 @@ body {
   border-radius: 10px; 
   background-color: #f6f6f6;
   color: #a6a6a6;
-  box-sizing: border-box;
+  /* CORREÇÃO AQUI: Aplica box-sizing para inputs também */
+  box-sizing: border-box; 
   outline: none; 
   box-shadow: 0 0 0 1px #e4e6eb, 0 2px 4px rgba(0, 0, 0, 0.05);
 }
@@ -341,4 +342,220 @@ body {
 .device-form input::-moz-placeholder {
   color: #a6a6a6;
   opacity: 1;
+}
+
+/* --- Estilos para Modal (Tela Detalhes) --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background-color: var(--cor-fundo-principal);
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--cor-sombra);
+  text-align: center;
+}
+
+.modal-content h3 {
+  color: var(--cor-primaria);
+  font-size: 18px;
+  margin-top: 0;
+}
+
+.modal-content p {
+  color: var(--cor-texto-claro);
+  margin-bottom: 25px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* TELA GASTOS
+
+.gastos-page-container {
+	padding: 15px; /* Mantém o padding da lista, mas para a página inteira */
+	/* Adicione padding inferior para que o conteúdo não fique escondido pela navbar */
+	padding-bottom: 75px; 
+}
+
+/* 1. Filtro de Tempo */
+.time-filter-container {
+	display: flex;
+	justify-content: space-between;
+	gap: 10px; /* Aumentei um pouco o gap */
+	margin-bottom: 25px; /* Mais espaço abaixo do filtro */
+}
+
+/* Base do botão de filtro */
+.filter-button {
+	flex-grow: 1; 
+	padding: 10px 0; 
+	background-color: var(--cor-fundo-secundario);
+	color: var(--cor-texto-escuro);
+	border: none;
+	border-radius: 8px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: all 0.3s;
+	/* Sombra sutil para destacar levemente quando inativo */
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); 
+}
+
+/* Estado Ativo do Filtro */
+.filter-button.active {
+	background-color: var(--cor-primaria) !important;
+	color: white !important;
+	box-shadow: 0 4px 8px rgba(230, 0, 18, 0.3); /* Sombra mais forte na cor primária */
+	transform: translateY(-1px); /* Leve elevação */
+}
+
+/* 2. Cards de Resumo (Gasto Total e Hoje) */
+.summary-cards-container {
+	display: flex;
+	justify-content: space-between;
+	gap: 15px;
+	margin-bottom: 20px;
+}
+
+.summary-card {
+	flex: 1;
+	background-color: var(--cor-fundo-secundario);
+	padding: 15px;
+	border-radius: 12px;
+	box-shadow: var(--cor-sombra);
+}
+
+.summary-card .card-label {
+	font-size: 14px;
+	color: var(--cor-texto-escuro);
+	margin-bottom: 5px;
+}
+
+.summary-card .card-value {
+	font-size: 28px; /* Aumentei para destaque */
+	font-weight: 700;
+	color: var(--cor-texto-claro);
+	margin: 0;
+}
+
+.summary-card .card-subtext {
+	font-size: 11px;
+	margin-top: 5px;
+}
+
+/* 3. Card do Gráfico (Maior) */
+.graph-card {
+	background-color: var(--cor-fundo-secundario);
+	padding: 20px; /* Mais padding para o gráfico */
+	border-radius: 12px;
+	box-shadow: var(--cor-sombra);
+	margin-bottom: 20px;
+}
+
+.graph-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+/* Placeholder do gráfico */
+.graph-placeholder {
+	/* O background e o estilo da linha vermelha estão no .jsx para controle de cor/linha */
+	border: 1px dashed var(--cor-borda); 
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end; /* Alinha o marcador de hora na parte inferior */
+}
+
+/* 4. Informações Adicionais (Média e Projeção) */
+.additional-info-cards {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.info-card {
+	background-color: var(--cor-fundo-secundario);
+	padding: 15px;
+	border-radius: 12px;
+	box-shadow: var(--cor-sombra);
+}
+
+.info-card .card-label {
+	font-size: 14px;
+	color: var(--cor-texto-escuro);
+	margin-bottom: 8px;
+}
+
+.info-card .card-value {
+	font-size: 22px; 
+	font-weight: 700;
+}
+
+/* Ícones de Projeção/Média */
+.info-card svg {
+	color: var(--cor-primaria);
+}
+
+/* --- ESTILOS DA NAVBAR (ADICIONADOS PREVENTIVAMENTE) --- */
+.navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    background-color: var(--cor-fundo-secundario);
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    padding: 0 5px;
+}
+
+.nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--cor-texto-escuro);
+    font-size: 10px;
+    font-weight: 500;
+    width: 20%;
+    padding: 5px 0;
+    transition: color 0.3s ease, transform 0.1s ease;
+}
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 2px;
+    transition: stroke 0.3s ease;
+}
+
+.nav-link.active {
+    color: var(--cor-primaria);
+    font-weight: 700;
+}
+
+.nav-link.active .nav-icon {
+    stroke: var(--cor-primaria);
 }
