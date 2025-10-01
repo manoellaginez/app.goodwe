@@ -184,7 +184,7 @@ export default function Gastos() {
       {/* GRÁFICO (Gastos por Hora) */}
       <div className="graph-card" style={{ marginBottom: '20px', padding: '15px', borderRadius: '12px', backgroundColor: 'var(--cor-fundo-secundario)', boxShadow: '0 4px 10px rgba(0, 0, 0, 0.05)' }}>
         <div className="graph-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h3 style={{ color: textColor, margin: 0, fontSize: '18px' }}>Gastos por Hora</h3>
+          <h3 style={{ color: textColor, margin: 0, fontSize: '18px' }}>Gastos por hora</h3>
           <FaFilter style={{ color: secondaryTextColor, cursor: 'pointer', width: '20px', height: '20px' }} />
         </div>
         {/* Use uma altura flexível (e.g., aspect-ratio) para proporção */}

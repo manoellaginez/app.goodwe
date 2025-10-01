@@ -1,0 +1,28 @@
+/*
+ * Arquivo: standard_text.css
+ * Objetivo: Definir uma classe CSS para padronizar o tamanho de fontes em títulos de navegação e telas.
+ */
+
+/* Define uma variável CSS para o tamanho padrão que queremos manter */
+:root {
+  --standard-text-size: 1.25rem; /* Isso corresponde a aproximadamente 20px */
+}
+
+/* A classe principal que será usada em todos os textos alvo */
+.standard-title {
+  /* Aplica o tamanho definido na variável */
+  font-size: var(--standard-text-size);
+  
+  /* Garantimos que a cor seja consistente, por exemplo, um preto escuro */
+  color: #2c3e50; 
+  
+  /* Define a espessura (peso) da fonte, se necessário */
+  font-weight: 600; /* Semi-negrito, bom para títulos */
+  
+  /* Remove margens e paddings padrão se o elemento for um título (h1, h2, etc.) */
+  margin: 0;
+  padding: 0;
+  
+  /* Outras propriedades comuns para garantir o padrão */
+  text-transform: none; /* Não altera maiúsculas/minúsculas, mas você pode usar 'uppercase' se quiser */
+}

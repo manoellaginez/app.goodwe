@@ -9,6 +9,7 @@ import Perfil from './pages/home/perfil.jsx';
 import Mais from './pages/home/mais.jsx'; 
 import DetalheDispositivo from './pages/home/detalhedispositivo.jsx'; 
 import Assistente from './pages/home/assistente.jsx';
+import './styles/standard_text.css';
 
 const initialDevices = [
   { id: 1, name: 'Lâmpada Sala', type: 'Lâmpada', status: true, room: 'Sala' },
