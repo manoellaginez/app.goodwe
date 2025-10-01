@@ -1,55 +1,54 @@
 import React from 'react';
-
-import { BsOutlet } from 'react-icons/bs';
+import { BsOutlet } from 'react-icons/bs'; // Assumindo que você está usando BsOutlet agora
 
 export default function DispositivoCard({ device, onToggle }) { 
-    // Corrigi o erro de exportação, pois 'export default function' está correto para um componente funcional.
 
-    // define as cores do ícone
-    const activeColor = '#e60012'; // Cor primária (vermelho/ativo)
-    const inactiveColor = 'var(--cor-texto-escuro)';
+    // define as cores do ícone
+    const activeColor = '#e60012'; 
+    const inactiveColor = 'var(--cor-texto-escuro)';
 
-    // funcao chamada ao clicar no toggle
-    const handleToggle = () => {
-        onToggle(device.id);
-    };
+    // funcao chamada ao clicar no toggle
+    const handleToggle = (e) => {
+        // --- CORREÇÃO CRÍTICA: IMPEDE O EVENTO DE SUBIR PARA O CARD PAI ---
+        if (e) e.stopPropagation(); 
+        onToggle(device.id);
+    };
 
-    // define a classe css baseada no status
-    const cardClassName = `device-card ${device.status ? 'active' : ''}`;
+    // define a classe css baseada no status
+    const cardClassName = `device-card ${device.status ? 'active' : ''}`;
 
-    return (
-        // Usa o 'cardClassName' para aplicar o estilo ativo (verde) quando 'device.status' for true
-        <div className={cardClassName}>
-            
-            {/* Ícone */}
-            <div className="device-icon-container">
-                {/* Ícone BsOutlet (Tomada) */}
-                <BsOutlet 
-                    size={24} 
-                    style={{ 
-                        // O ícone usa a cor primária quando ativo, e a cor inativa quando desligado.
-                        color: device.status ? activeColor : inactiveColor 
-                    }} 
-                /> 
-            </div>
+    return (
+        // --- CORREÇÃO FINAL: Adicionando style inline para remover a borda 1px ---
+        <div className={cardClassName} style={{ border: 'none' }}>
+            
+            {/* Ícone (Assumindo BsOutlet, que você queria usar) */}
+            <div className="device-icon-container">
+                <BsOutlet 
+                    size={24} 
+                    style={{ 
+                        color: device.status ? activeColor : inactiveColor 
+                    }} 
+                /> 
+            </div>
 
-            {/* Informações do Dispositivo */}
-            <div className="device-info">
-                <h3>{device.name}</h3>
-                {/* Mostra se está Ligado ou Desligado e o cômodo */}
-                <p>
-                    {device.status ? 'Ligado' : 'Desligado'} | {device.room}
-                </p>
-            </div>
+            {/* Informações do Dispositivo */}
+            <div className="device-info">
+                <h3>{device.name}</h3>
+                <p>
+                    {device.status ? 'Ligado' : 'Desligado'} | {device.room}
+                </p>
+            </div>
 
-            {/* Toggle Switch (Botão de ligar/desligar) */}
-            <div 
-                className="device-toggle"
-                onClick={handleToggle} // Chama a função que altera o status
-            >
-                <div className="device-toggle-circle"></div>
-            </div>
-            
-        </div>
-    );
+            {/* Toggle Switch (Botão de ligar/desligar) */}
+            <div 
+                className="device-toggle"
+                // CHAMA A FUNÇÃO DE TOGGLE PASSANDO O EVENTO DE CLIQUE
+                onClick={handleToggle} 
+            >
+                {/* O seu CSS global aplica as cores do toggle e a animação aqui */}
+                <div className="device-toggle-circle"></div>
+            </div>
+            
+        </div>
+    );
 }

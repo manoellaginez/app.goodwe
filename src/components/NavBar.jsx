@@ -64,7 +64,7 @@ export default function Navbar() {
         justifyContent: 'center',
         textDecoration: 'none',
         height: linkHeight, // Altura ajustada
-        padding: '0 8px', // 3. Padding AUMENTADO para dar espaço aos ícones inativos
+        padding: '0 8px', // Padding AUMENTADO para dar espaço aos ícones inativos
         borderRadius: '50px',
         cursor: 'pointer',
         flexShrink: 0,
@@ -76,9 +76,9 @@ export default function Navbar() {
     // Estilo para o item ativo (pílula branca)
     const activeStyle = {
         backgroundColor: inactiveColor, // Fundo BRANCO
-        minWidth: '90px', // 2. MIN WIDTH AUMENTADO para caber ícone + espaço + texto
+        minWidth: '90px', 
         maxWidth: '100px', 
-        padding: '0 10px', // 2. PADDING AUMENTADO para criar respiro nas bordas da pílula
+        padding: '0 10px', 
     };
 
     return (
@@ -101,7 +101,7 @@ export default function Navbar() {
                     .nav-item-link.active .nav-item-text {
                         opacity: 1;
                         width: auto;
-                        margin-left: 5px; /* Aumentado para 5px para dar respiro (Casinha | Início) */
+                        margin-left: 8px; /* Espaço entre ícone e texto */
                         color: ${primaryColor} !important; 
                     }
                 `}
@@ -112,7 +112,7 @@ export default function Navbar() {
                 style={{
                     // Estilo do container PÍLULA FLUTUANTE (VERMELHO)
                     position: 'fixed', 
-                    bottom: '18px', 
+                    bottom: '18px', // Voltando para 18px para o estilo flutuante
                     left: '50%', 
                     transform: 'translateX(-50%)', 
                     width: 'calc(100% - 50px)', 
@@ -148,6 +148,8 @@ export default function Navbar() {
                                     width: iconSize, 
                                     height: iconSize, 
                                     flexShrink: 0,
+                                    // AQUI: Margem à direita adicionada apenas quando o item está ativo
+                                    marginRight: isActive ? '8px' : '0', 
                                     // Ícone: Vermelho se ativo, Branco se inativo
                                     color: isActive ? primaryColor : inactiveColor
                                 }} 
