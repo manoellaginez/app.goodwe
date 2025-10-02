@@ -296,7 +296,7 @@ const Entre = () => {
                             set={setEmail} 
                             value={email} 
                             label={'E-mail'} 
-                            type={'email'} 
+                            type={'text'} 
                             placeholder={'E-mail'}
                             className={'input-auth-field'}
                         />

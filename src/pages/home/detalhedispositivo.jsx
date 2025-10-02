@@ -62,7 +62,14 @@ export default function DetalheDispositivo({ devices, onRemoveDevice, onToggleDe
   }
 
   const handleRemove = () => setShowModal(true);
-  const confirmRemove = () => { onRemoveDevice(device.id); setShowModal(false); navigate('/'); };
+
+  // ALTERAÇÃO: ao confirmar, volta para a página anterior (navigate(-1))
+  const confirmRemove = () => {
+    onRemoveDevice(device.id);
+    setShowModal(false);
+    navigate(-1);
+  };
+
   const cancelRemove = () => setShowModal(false);
 
   const fmt = (n, digits = 3) => {
@@ -142,7 +149,7 @@ export default function DetalheDispositivo({ devices, onRemoveDevice, onToggleDe
         </div>
       </div>
 
-        <div className="consumption-card" style={{ marginTop: '20px' }}>
+      <div className="consumption-card" style={{ marginTop: '20px' }}>
         <h3 className="card-label">Informações de Uso</h3>
 
         {loadingEnergia && <p style={{ color: 'var(--cor-texto-claro)', marginTop: 10 }}>Carregando telemetria…</p>}

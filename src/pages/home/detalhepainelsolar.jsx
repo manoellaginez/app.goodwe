@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchEnergia } from '../../endpoints/Api';
 
@@ -19,6 +19,9 @@ export default function DetalhePainelSolar() {
   const [loadingEnergia, setLoadingEnergia] = useState(true);
   const [erroEnergia, setErroEnergia] = useState(null);
 
+  // Para inicializar `ligado` a partir da telemetria apenas na primeira carga
+  const inicializadoLigado = useRef(false);
+
   useEffect(() => {
     let isMounted = true;
 
@@ -26,8 +29,18 @@ export default function DetalhePainelSolar() {
       try {
         setLoadingEnergia(true);
         setErroEnergia(null);
-        const data = await fetchEnergia("painel"); // trocar pelo ID real
-        if (isMounted) setEnergia(data || null);
+        const data = await fetchEnergia("painel"); // trocar pelo ID real se necessário
+        if (!isMounted) return;
+        setEnergia(data || null);
+
+        // inicializa `ligado` a partir da telemetria somente na primeira vez
+        if (!inicializadoLigado.current) {
+          const ligadoTelemetria = data?.ligado ?? data?.energia?.ligado;
+          if (typeof ligadoTelemetria === 'boolean') {
+            setLigado(ligadoTelemetria);
+          }
+          inicializadoLigado.current = true;
+        }
       } catch (e) {
         if (isMounted) setErroEnergia(e.message || String(e));
       } finally {
@@ -72,9 +85,8 @@ export default function DetalhePainelSolar() {
 
       {/* Switch de ligar/desligar */}
       <div 
-        className="device-card" 
+        className={`device-card ${ligado ? 'active' : ''}`} 
         style={{ marginTop: '20px' }}
-        onClick={() => setLigado(!ligado)}
       >
         <div className="device-info">
           <h3 style={{ color: 'var(--cor-texto-claro)' }}>Status</h3>
@@ -83,7 +95,11 @@ export default function DetalhePainelSolar() {
           </p>
         </div>
 
-        <div className="device-toggle">
+        <div 
+          className="device-toggle"
+          onClick={() => setLigado(!ligado)}
+          style={{ cursor: 'pointer' }}
+        >
           <div className={`device-toggle-circle ${ligado ? 'active' : ''}`}></div>
         </div>
       </div>
