@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// Corrigido o caminho de importação (Assumindo que os nomes dos arquivos estão em caixa baixa e o caminho está correto)
-import Navbar from './components/Navbar.jsx'; 
+import Navbar from './components/NavBar.jsx';
 import Inicio from './pages/home/inicio.jsx'; 
 import AdicionarDispositivo from './pages/home/adicionardispositivo.jsx'; 
 import Gastos from './pages/home/gastos.jsx'; 
@@ -10,6 +9,11 @@ import Mais from './pages/home/mais.jsx';
 import DetalheDispositivo from './pages/home/detalhedispositivo.jsx'; 
 import Assistente from './pages/home/assistente.jsx';
 import Gerenciar from './pages/home/gerenciar.jsx';
+
+import Login from './pages/auth/entre.jsx';
+
+import { AuthProvider } from './contexts/UseAuth.jsx';
+
 import './styles/standard_text.css';
 
 const initialDevices = [
@@ -41,6 +45,7 @@ function App() {
 
   return (
     <Router>
+        <AuthProvider>
       <div className="app-container" style={{ paddingBottom: '60px' }}> {/* Adiciona padding para a Navbar */}
         <div className="page-content">
           <Routes>
@@ -55,6 +60,8 @@ function App() {
               path="/adicionar-dispositivo" 
               element={<AdicionarDispositivo onAddDevice={handleAddDevice} />} 
             />
+
+            <Route path='/login' element={<Login />} />
             
             {/* Rota para os DETALHES do Dispositivo */}
             <Route 
@@ -79,6 +86,7 @@ function App() {
         </div>
         <Navbar />
       </div>
+        </AuthProvider>
     </Router>
   );
 }
