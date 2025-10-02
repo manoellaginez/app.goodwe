@@ -11,8 +11,8 @@
   --cor-texto-escuro: #a6a6a6; /* CINZA (Para texto secundário, como descrições) */
   
   /* Cores de Ação/Destaque */
-  --cor-primaria: #e60012; /* VERMELHO: Cor principal de botão/destaque/ligado */
-  --cor-alerta: #dc3545; /* Vermelho padrão para alertas */
+  --cor-primaria: #B42222; /* VERMELHO: Cor principal de botão/destaque/ligado */
+  --cor-alerta: #B42222; /* Vermelho padrão para alertas */
   --cor-sucesso: #28a745; /* Verde (Para feedback de sucesso, mas não o toggle) */
 
   /* Outros */
@@ -33,6 +33,31 @@ body {
 }
 
 /* --- ESTILOS DO CARD E TOGGLE (MANTIDOS E CORRIGIDOS) --- */
+/*Inputs de texto*/
+.input-text{
+  padding: 3px;
+    padding: 6px;
+    background-color: #F6F6F6;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 8px;
+    border-radius: 7px;
+    font-size: 10px;
+    margin-bottom: 15px;
+    outline: none;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 20em;
+}
+
+.label-1 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #E60012; 
+    margin-bottom: 20px;
+    color: #E60012;
+    margin-bottom: 18px;
+}
 
 /* 1. Botão Adicionar Dispositivo (VERMELHO) */
 .add-device-button {
@@ -155,43 +180,6 @@ body {
   color: var(--cor-texto-escuro); /* CINZA por padrão */
 }
 
-/* ... (Outras regras CSS mantidas para brevidade) ... */
-
-/* --- Estilos da Navbar --- */
-.navbar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  background-color: var(--cor-fundo-secundario);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  border-top: 1px solid var(--cor-borda);
-  z-index: 1000;
-}
-
-.nav-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  color: var(--cor-texto-escuro);
-  font-size: 10px;
-  padding: 5px;
-  transition: color 0.3s;
-}
-
-.nav-link.active {
-  color: var(--cor-primaria);
-}
-
-.nav-icon {
-  font-size: 20px;
-  margin-bottom: 2px;
-}
 
 /* --- Estilos da Tela Início --- */
 .page-title {
@@ -387,11 +375,6 @@ body {
 
 /* TELA GASTOS
 
-.gastos-page-container {
-	padding: 15px; /* Mantém o padding da lista, mas para a página inteira */
-	/* Adicione padding inferior para que o conteúdo não fique escondido pela navbar */
-	padding-bottom: 75px; 
-}
 
 /* 1. Filtro de Tempo */
 .time-filter-container {

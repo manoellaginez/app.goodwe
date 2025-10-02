@@ -60,7 +60,7 @@ export default function AdicionarDispositivo({ onAddDevice }) {
         {/* --- FIM DO BOTÃO DE VOLTAR --- */}
 
       {/* Estilos para o texto vermelho (se não estiver no index.css, terá que ser criado) */}
-      <h1 style={{ color: '#e60012', fontSize: '24px', fontWeight: 'bold', marginTop: '20px' }}>
+      <h1 style={{ color: '#B42222', fontSize: '24px', fontWeight: 'bold', marginTop: '20px' }}>
         Adicionar novo dispositivo
       </h1>
       
@@ -124,7 +124,7 @@ export default function AdicionarDispositivo({ onAddDevice }) {
           {/* Usamos o toggle do CSS que criamos antes */}
           <div 
             className="device-toggle"
-            style={{ backgroundColor: suggestions ? '#e60012' : '#d9d9d9' }} // Fundo vermelho para ativo
+            style={{ backgroundColor: suggestions ? '#B42222' : '#d9d9d9' }} // Fundo vermelho para ativo
             onClick={() => setSuggestions(!suggestions)}
           >
             <div 
@@ -142,7 +142,7 @@ export default function AdicionarDispositivo({ onAddDevice }) {
         <button 
           type="submit" 
           className="add-device-button"
-          style={{ backgroundColor: '#e60012', fontWeight: 'bold' }} // Cor do botão vermelho do seu layout
+          style={{ backgroundColor: '#B42222', fontWeight: 'bold' }} // Cor do botão vermelho do seu layout
         >
           SALVAR
         </button>

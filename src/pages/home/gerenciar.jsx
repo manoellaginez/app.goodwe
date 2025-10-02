@@ -50,7 +50,7 @@ export default function Gerenciar() {
     ];
     
     // Cores baseadas nas suas variáveis CSS
-    const primaryColor = 'var(--cor-primaria, #e60012)';
+    const primaryColor = 'var(--cor-primaria, #B42222)';
     const textColor = 'var(--cor-texto-claro, #333333)';
     const secondaryTextColor = 'var(--cor-texto-escuro, #a6a6a6)';
     const cardBackground = 'var(--cor-fundo-card, #f6f6f6)';

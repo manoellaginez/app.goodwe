@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
 
 // Cores
-const primaryColor = '#e60012'; // Vermelho vibrante (Fundo da barra, ícones/texto ativos)
+const primaryColor = '#B42222'; // Vermelho vibrante (Fundo da barra, ícones/texto ativos)
 const inactiveColor = '#fff'; // Branco (Cor da pílula ativa e dos ícones inativos)
 
 // Dimensões Ajustadas
@@ -111,13 +111,11 @@ export default function Navbar() {
                 style={{
                     // Estilo do container PÍLULA FLUTUANTE (VERMELHO)
                     position: 'fixed', 
-                    bottom: '18px', // Voltando para 18px para o estilo flutuante
+                    bottom: '-1px', // Voltando para 18px para o estilo flutuante
                     left: '50%', 
                     transform: 'translateX(-50%)', 
-                    width: 'calc(100% - 50px)', 
-                    maxWidth: navbarMaxWidth, // Usando 340px
-                    backgroundColor: primaryColor, // Fundo VERMELHO
-                    borderRadius: '50px', 
+                    width: '100%',
+                    backgroundColor: primaryColor, // Fundo VERMELHO 
                     boxShadow: '0 8px 15px rgba(0, 0, 0, 0.25)',
                     padding: navbarPadding, // Padding final e mais apertado
                     zIndex: 99, 

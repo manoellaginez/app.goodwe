@@ -4,7 +4,7 @@ import { BsOutlet } from 'react-icons/bs'; // Assumindo que você está usando B
 export default function DispositivoCard({ device, onToggle }) { 
 
     // define as cores do ícone
-    const activeColor = '#e60012'; 
+    const activeColor = '#B42222'; 
     const inactiveColor = 'var(--cor-texto-escuro)';
 
     // funcao chamada ao clicar no toggle

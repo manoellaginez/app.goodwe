@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+// Componentes importados (mantidos)
 import Navbar from './components/NavBar.jsx';
 import Inicio from './pages/home/inicio.jsx'; 
 import AdicionarDispositivo from './pages/home/adicionardispositivo.jsx'; 
@@ -9,10 +10,10 @@ import Mais from './pages/home/mais.jsx';
 import DetalheDispositivo from './pages/home/detalhedispositivo.jsx'; 
 import Assistente from './pages/home/assistente.jsx';
 import Gerenciar from './pages/home/gerenciar.jsx';
-
-import Login from './pages/auth/entre.jsx';
-
-import { AuthProvider } from './contexts/UseAuth.jsx';
+// Componentes de Autenticação
+import Cadastro from './pages/auth/cadastro.jsx'; 
+import Entre from './pages/auth/entre.jsx'; // Componente que queremos na raiz
+import { AuthProvider } from './contexts/UseAuth.jsx'; 
 
 import './styles/standard_text.css';
 
@@ -21,74 +22,110 @@ const initialDevices = [
   { id: 2, name: 'Ar Cond. Quarto', type: 'Ar Condicionado', status: false, room: 'Quarto' },
 ];
 
-function App() {
-  const [devices, setDevices] = useState(initialDevices);
-  
-  // Função para adicionar um novo dispositivo
-  const handleAddDevice = (newDevice) => {
-    // Usamos um timestamp para garantir IDs únicos
-    const deviceWithId = { ...newDevice, id: Date.now(), status: false }; // Novo dispositivo começa desligado
-    setDevices((prevDevices) => [...prevDevices, deviceWithId]);
-  };
-  
-  // Função para alternar o status do dispositivo
-  const handleToggleDevice = (id) => {
-    setDevices(devices.map(device => 
-        device.id === id ? { ...device, status: !device.status } : device
-    ));
-  };
-  
-  // NOVA FUNÇÃO: Remover o dispositivo da lista
-  const handleRemoveDevice = (idToRemove) => {
-      setDevices(devices.filter(device => device.id !== idToRemove));
-  };
+// Componente principal que define a lógica de estado e rotas
+function MainAppContent() {
+    const location = useLocation();
 
-  return (
-    <Router>
-        <AuthProvider>
-      <div className="app-container" style={{ paddingBottom: '60px' }}> {/* Adiciona padding para a Navbar */}
-        <div className="page-content">
-          <Routes>
-            {/* Rota principal (Home/Início) */}
-            <Route 
-              path="/" 
-              element={<Inicio devices={devices} onToggleDevice={handleToggleDevice} />} 
-            /> 
-            
-            {/* Rota para o formulário de Adicionar Dispositivo */}
-            <Route 
-              path="/adicionar-dispositivo" 
-              element={<AdicionarDispositivo onAddDevice={handleAddDevice} />} 
-            />
+    // 1. ROTAS ONDE A NAVBAR DEVE SER ESCONDIDA (EXCLUSÃO)
+    // A rota raiz '/' agora é a tela de login, que *não* deve ter a navbar.
+    // O caminho '/entre' é redundante, mas é mantido.
+    const noNavbarRoutes = [
+        '/', // NOVO: Adicionado para esconder a Navbar na tela de Login/Entrar
+        '/entre',
+        '/cadastro',   
+        '/adicionar-dispositivo',
+        '/gerenciar',
+        '/dispositivo/',
+    ];
 
-            <Route path='/login' element={<Login />} />
+    // 2. LÓGICA CONDICIONAL
+    const currentPath = location.pathname;
+    
+    const shouldHideNavbar = noNavbarRoutes.some(route => {
+        if (route.endsWith('/') && route.length > 1) {
+            return currentPath.startsWith(route);
+        }
+        return currentPath === route;
+    });
+
+    const shouldShowNavbar = !shouldHideNavbar;
+
+    // Estados e Handlers (mantidos)
+    const [devices, setDevices] = useState(initialDevices);
+  
+    const handleAddDevice = (newDevice) => {
+        const deviceWithId = { ...newDevice, id: Date.now(), status: false }; 
+        setDevices((prevDevices) => [...prevDevices, deviceWithId]);
+    };
+  
+    const handleToggleDevice = (id) => {
+        setDevices(devices.map(device => 
+            device.id === id ? { ...device, status: !device.status } : device
+        ));
+    };
+  
+    const handleRemoveDevice = (idToRemove) => {
+        setDevices(devices.filter(device => device.id !== idToRemove));
+    };
+
+
+    return (
+        <div 
+            className="app-container" 
+            style={{ paddingBottom: shouldShowNavbar ? '60px' : '0' }}
+        > 
+            <div className="page-content">
+                <Routes>
+                    
+                    {/* AJUSTE PRINCIPAL: Rota raiz agora aponta para o componente Entre */}
+                    <Route path="/" element={<Entre />} />
+                    
+                    {/* Mantido para compatibilidade, embora seja redundante com a linha acima */}
+                    <Route path="/entre" element={<Entre />} />
+                    <Route path="/cadastro" element={<Cadastro />} />
+
+                    <Route 
+                        path="/adicionar-dispositivo" 
+                        element={<AdicionarDispositivo onAddDevice={handleAddDevice} />} 
+                    />
+                    
+                    <Route 
+                        path="/dispositivo/:id" 
+                        element={<DetalheDispositivo 
+                                    devices={devices} 
+                                    onRemoveDevice={handleRemoveDevice} 
+                                    onToggleDevice={handleToggleDevice} 
+                                />} 
+                    />
+                    
+                    <Route path="/gerenciar" element={<Gerenciar />} /> 
+                    
+                    {/* ROTAS COM NAVBAR (Conteúdo Principal - O 'Inicio' foi movido para '/inicio') */}
+                    <Route 
+                        path="/inicio" 
+                        element={<Inicio devices={devices} onToggleDevice={handleToggleDevice} />} 
+                    /> 
+                    <Route path="/gastos" element={<Gastos />} />
+                    <Route path="/assistente" element={<Assistente />} /> 
+                    <Route path="/perfil" element={<Perfil />} />
+                    <Route path="/mais" element={<Mais />} />
+                </Routes>
+            </div>
             
-            {/* Rota para os DETALHES do Dispositivo */}
-            <Route 
-              path="/dispositivo/:id" 
-              element={<DetalheDispositivo 
-                          devices={devices} 
-                          onRemoveDevice={handleRemoveDevice} 
-                          onToggleDevice={handleToggleDevice} 
-                        />} 
-            />
-            
-            {/* Rotas da Navbar */}
-            <Route path="/gastos" element={<Gastos />} />
-            
-            {/* Rota para o Gerenciamento Inteligente (Ações Inteligentes) */}
-            <Route path="/gerenciar" element={<Gerenciar />} /> 
-            
-            <Route path="/assistente" element={<Assistente />} /> 
-            <Route path="/perfil" element={<Perfil />} />
-            <Route path="/mais" element={<Mais />} />
-          </Routes>
+            {/* RENDERIZAÇÃO CONDICIONAL DA NAVBAR */}
+            {shouldShowNavbar && <Navbar />}
+
         </div>
-        <Navbar />
-      </div>
-        </AuthProvider>
-    </Router>
-  );
+    );
 }
 
-export default App;
+// O componente App envolve MainAppContent com Router
+export default function App() {
+    return (
+        <Router>
+            <AuthProvider>
+                <MainAppContent />
+            </AuthProvider>
+        </Router>
+    );
+}

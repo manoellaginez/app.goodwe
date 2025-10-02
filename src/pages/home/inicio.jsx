@@ -16,7 +16,7 @@ export default function Inicio({ devices, onToggleDevice }) {
     };
 
     // Cor específica para os títulos (Substitua por outra cor se quiser)
-    const titleColor = '#e60012';  
+    const titleColor = '#B42222';  
     const buttonColor = titleColor;
 
     return (

@@ -151,7 +151,7 @@ const ConfigItem = ({ icon: Icon, title, description, action = null, isToggle = 
 // Componente Principal da Tela Mais
 export default function Mais() {
     // Cores fixas e primárias
-    const PRIMARY_RED = '#E60012'; 
+    const PRIMARY_RED = '#B42222'; 
     const BORDER_COLOR = '#E0E0E0';
     const MAIN_TEXT_COLOR_REQUESTED = '#A6A6A6'; 
 
