@@ -1,21 +1,26 @@
+import React from 'react';
+
+/**
+ * Componente de controle de formulário reutilizável.
+ * Assume que o estilo visual será gerenciado via 'className' pelo componente pai.
+ */
 export default function Control(props) {
-    const textLabel = props.label
-    
-    const type = props.type
-    const placeholder = props.placeholder
-    const name = props.name
-    const id = props.id
-    const className = props.className
+    const { label: textLabel, type, placeholder, name, id, className, set, value } = props;
 
-    const set = props.set
-    const value = props.value
-
-    return(
-        <div>
-            <label>{textLabel}</label>
+    return (
+        <div className={className}>
+            {/* O rótulo é mantido, mas será estilizado via CSS no Entre.jsx para parecer um placeholder ou ser escondido */}
+            <label htmlFor={id}>{textLabel}</label>
             <input
-            type={type} placeholder={placeholder} name={name} id={id} className={className}
-            onChange={(e) => set(e.target.value)} value={value}/>
+                type={type}
+                placeholder={placeholder}
+                name={name}
+                id={id}
+                // Adicionando um className específico ao input para estilização
+                className="control-input" 
+                onChange={(e) => set(e.target.value)}
+                value={value}
+            />
         </div>
-    )
+    );
 }
